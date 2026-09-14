@@ -18,7 +18,7 @@ The installer bootstraps CLI skill entrypoints after clone, so new CLIs (e.g. Gr
 ## Usage
 
 ```bash
-npx @santifer/career-ops init [folder]   # default folder: ./career-ops
+npx @santifer/career-ops init [folder]   # default folder: ./jobkit
 ```
 
 Prefer the manual route? `git clone` still works exactly as before — see the [setup guide](https://github.com/career-ops-hq/career-ops/blob/main/docs/SETUP.md).

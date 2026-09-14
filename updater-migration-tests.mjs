@@ -223,6 +223,8 @@ const requiredSystemPaths = [
   'batch/README.md',
   'examples/',
   'config/profile.example.yml',
+  'config/profile.example.en.yml',
+  'NOTICE',
   '.env.example',
   '.claude-plugin/',
   '.qwen/',
@@ -231,17 +233,11 @@ const requiredSystemPaths = [
   '.cursor/skills/',
   'tracker-columns-tests.mjs',
   'updater-migration-tests.mjs',
-  'README.ar.md',
-  'README.de.md',
-  'README.hi.md',
-  'README.ja.md',
-  'README.ua.md',
   'CHANGELOG.md',
   'CODE_OF_CONDUCT.md',
   'GOVERNANCE.md',
   'SECURITY.md',
   'SUPPORT.md',
-  'TRADEMARK.md',
 ];
 
 const requiredBootstrapPaths = [

@@ -1,0 +1,27 @@
+jobkit-kr
+Copyright (c) 2026 dingcodingco
+
+이 소프트웨어는 career-ops (https://github.com/santifer/career-ops) 를 포크해서
+만들었습니다. 원저작물의 저작권은 아래와 같으며, MIT 라이선스 전문은 LICENSE
+파일에 그대로 보존되어 있습니다.
+
+    career-ops
+    Copyright (c) 2026 Santiago Fernández de Valderrama
+    MIT License
+
+포크 기준 버전: career-ops v1.32.0
+
+"career-ops"는 Santiago Fernández de Valderrama의 상표입니다. 이 프로젝트는
+그 이름·로고·시각 자산을 제품명이나 브랜드로 사용하지 않으며, 원저작물과의
+관계를 설명하는 용도로만 언급합니다. 이 프로젝트는 career-ops 측이 만들거나,
+보증하거나, 후원하지 않습니다.
+
+원본에 있던 상표 정책 문서(TRADEMARK.md), 인용 정보(CITATION.cff), 로고·배너·
+보도 배지 등 브랜드 시각 자산은 이 포크에서 제거했습니다. 원본 README는
+README.upstream.md 로 보존했습니다.
+
+## 이 포크가 추가한 것
+
+- providers/wanted.mjs — 원티드(wanted.co.kr) 공고 수집
+- providers/jumpit.mjs — 점핏(jumpit.saramin.co.kr) 공고 수집
+- templates/portals.kr.example.yml — 한국 구직자용 기본 설정

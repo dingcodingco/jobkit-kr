@@ -34,7 +34,7 @@ try {
     pass('no ReferenceError on startup');
   }
 
-  if (stdout.includes('=== career-ops sync check ===')) {
+  if (stdout.includes('=== jobkit sync check ===')) {
     pass('emits its own report header (proof it ran, not just exited)');
   } else {
     fail(`expected the sync-check header in stdout, got: ${JSON.stringify(stdout.slice(0, 200))}`);

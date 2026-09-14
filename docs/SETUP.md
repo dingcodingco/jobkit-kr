@@ -54,7 +54,7 @@ sessions, use the local quick start below.
 npx @santifer/career-ops init
 ```
 
-`npx` ships with Node.js — it runs the installer once without installing anything globally. This clones the latest release into `./career-ops` and installs dependencies. Then move into the workspace and open your AI CLI:
+`npx` ships with Node.js — it runs the installer once without installing anything globally. This clones the latest release into `./jobkit` and installs dependencies. Then move into the workspace and open your AI CLI:
 
 ```bash
 cd career-ops
@@ -63,7 +63,7 @@ claude   # or codex / qwen / opencode / agy / grok
 
 **On first launch, career-ops walks you through setup by chatting** — it asks for your CV, your details (name, target roles, salary), and sets up the job scanner with pre-configured companies. Nothing to edit by hand: just answer its questions. Then paste a job offer URL or description and it evaluates it, writes a report, generates a tailored PDF, and tracks it.
 
-If you are using Codex, start the interactive session with `codex`. Slash commands are not guaranteed in Codex, so use the same mode names in a prompt if `/career-ops` is unavailable:
+If you are using Codex, start the interactive session with `codex`. Slash commands are not guaranteed in Codex, so use the same mode names in a prompt if `/jobkit` is unavailable:
 
 ```text
 Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123
@@ -110,7 +110,7 @@ The basic workflow is:
 2. Make one focused change and keep personal data such as `cv.md`, `profile.yml`, applications, and reports out of the commit.
 3. Run the relevant checks; for a broad validation, use `node test-all.mjs --quick`.
 4. Commit and push your branch to your fork.
-5. Open a pull request against `career-ops-hq/career-ops` and explain what changed and why.
+5. Open a pull request against `career-ops-hq/jobkit` and explain what changed and why.
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md) for the full contribution guidelines and examples of good first contributions.
 
@@ -127,13 +127,13 @@ npx playwright install chromium
 | Action | How |
 |--------|-----|
 | Evaluate an offer | Paste a URL or JD text |
-| Search for offers | `/career-ops scan` or ask the agent to run `scan` |
-| Process pending URLs | `/career-ops pipeline` or ask the agent to run `pipeline` |
-| Generate a PDF | `/career-ops pdf` or ask the agent to run `pdf` |
-| Draft application email | `/career-ops email` or ask the agent to run `email`; draft-only, never sends, submits, or clicks |
-| Batch evaluate | `/career-ops batch` or use `codex exec "Run career-ops batch mode ..."` |
-| Check tracker status | `/career-ops tracker` or ask the agent to run `tracker` |
-| Fill application form | `/career-ops apply` or ask the agent to run `apply` |
+| Search for offers | `/jobkit scan` or ask the agent to run `scan` |
+| Process pending URLs | `/jobkit pipeline` or ask the agent to run `pipeline` |
+| Generate a PDF | `/jobkit pdf` or ask the agent to run `pdf` |
+| Draft application email | `/jobkit email` or ask the agent to run `email`; draft-only, never sends, submits, or clicks |
+| Batch evaluate | `/jobkit batch` or use `codex exec "Run career-ops batch mode ..."` |
+| Check tracker status | `/jobkit tracker` or ask the agent to run `tracker` |
+| Fill application form | `/jobkit apply` or ask the agent to run `apply` |
 
 ## Verify Setup
 

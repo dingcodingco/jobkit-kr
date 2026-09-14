@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { careerOpsRoot, rootScript, trackerCanDelete } from "@/lib/career-ops";
+import { careerOpsRoot, rootScript, trackerCanDelete } from "@/lib/jobkit";
 import { isTrackerWriting } from "@/lib/core/run-registry";
 
 export const runtime = "nodejs";

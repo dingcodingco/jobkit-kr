@@ -1,7 +1,7 @@
 {
-  "name": "career-ops",
+  "name": "jobkit-kr",
   "version": "1.32.0",
-  "description": "Open-source AI job search that runs locally in your AI coding CLI: scan job portals, evaluate listings into a structured A-H report with a 1-5 score, tailor your CV, track applications",
+  "description": "한국 채용 시장용 구직 파이프라인 — 원티드·점핏 공고를 수집해 내 기준·이력서와 대조하고, 지원 현황까지 추적한다",
   "private": true,
   "engines": {
     "node": ">=18"
@@ -87,11 +87,11 @@
     "grok",
     "ai-agent-skill"
   ],
-  "author": "Santiago Fernández de Valderrama <hi@santifer.io> (https://santifer.io)",
-  "homepage": "https://career-ops.org",
+  "author": "dingcodingco",
+  "homepage": "https://github.com/dingcodingco/jobkit-kr",
   "repository": {
     "type": "git",
-    "url": "https://github.com/career-ops-hq/career-ops"
+    "url": "https://github.com/dingcodingco/jobkit-kr"
   },
   "license": "MIT",
   "dependencies": {
@@ -99,5 +99,11 @@
     "dotenv": "^17.0.0",
     "js-yaml": "^5.3.0",
     "playwright": "1.62.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dingcodingco/jobkit-kr/issues"
+  },
+  "contributors": [
+    "Santiago Fernández de Valderrama <hi@santifer.io> (career-ops 원저자)"
+  ]
 }

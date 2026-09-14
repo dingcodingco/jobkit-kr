@@ -1,6 +1,6 @@
 import { spawnHeadlessCli } from "@/lib/spawn-cli.mjs";
 import { resolveCli } from "@/lib/clis";
-import { careerOpsRoot, readMemory, doctorState } from "@/lib/career-ops";
+import { careerOpsRoot, readMemory, doctorState } from "@/lib/jobkit";
 
 export const runtime = "nodejs"; // child_process (spawn) requires the Node runtime
 export const dynamic = "force-dynamic";

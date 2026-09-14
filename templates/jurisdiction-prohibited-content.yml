@@ -77,6 +77,56 @@ entries:
       - "Ogletree Deakins analysis of California Labor Code 432.3 salary history inquiry ban (AB 168)"
       - "Jackson Lewis guidance on California's salary history ban effective January 1, 2018"
 
+  - jurisdiction: KR
+    jurisdiction_name: "대한민국"
+    prohibited: >-
+      직무 수행에 필요하지 않은 신체적 조건(용모·키·체중), 출신지역·혼인여부·재산,
+      그리고 구직자 본인이 아닌 직계 존비속·형제자매의 학력·직업·재산을
+      기초심사자료에 적게 하거나 입증자료로 수집하는 것.
+    matching: >-
+      공고나 지원서 양식이 사진 부착, 키·체중·신체 치수, 본적·출신지, 결혼 여부,
+      본인 또는 가족의 재산, 부모·형제의 학력·직업을 적으라고 요구할 때 발동한다.
+      직무에 실제로 필요한 신체 요건(예: 특정 중량물 취급, 시력 기준이 법정 요건인
+      직종)이나, 입사 후 4대 보험·가족수당 처리를 위해 채용이 확정된 뒤 받는
+      가족관계 정보에는 발동하지 않는다. 채용 단계에서 요구하는지가 기준이다.
+    legal_basis: "채용절차의 공정화에 관한 법률 제4조의3(출신지역 등 개인정보 요구 금지)"
+    effective: "2019-07-17"
+    sources:
+      - "법제처 국가법령정보센터 — 채용절차의 공정화에 관한 법률 (시행 2020-05-26)"
+      - "고용노동부 채용절차법 업무 매뉴얼"
+
+  - jurisdiction: KR
+    jurisdiction_name: "대한민국"
+    prohibited: >-
+      모집·채용에서 합리적인 이유 없이 연령을 이유로 구직자를 차별하는 것.
+    matching: >-
+      공고가 "만 35세 이하", "2000년생 이후 출생자", "20대 선호"처럼 나이로 지원
+      자격을 자르거나 선호를 밝힐 때 발동한다. 법이 예외로 두는 경우
+      (직무 성격상 특정 연령이 불가피한 경우, 근속기간에 따라 임금·복리후생을
+      달리 하는 경우, 법령에 따라 특정 연령집단을 고용촉진하는 경우)에 해당하는
+      근거가 공고에 적혀 있으면 그 근거를 함께 적고 단정하지 않는다.
+      경력 연차 요건("3년 이상")은 연령 요건이 아니므로 발동하지 않는다.
+    legal_basis: "고용상 연령차별금지 및 고령자고용촉진에 관한 법률 제4조의4(모집·채용 등에서의 연령차별 금지), 예외는 제4조의5"
+    effective: "2010-01-01"
+    sources:
+      - "법제처 국가법령정보센터 — 고용상 연령차별금지 및 고령자고용촉진에 관한 법률 (시행 2022-06-10)"
+
+  - jurisdiction: KR
+    jurisdiction_name: "대한민국"
+    prohibited: >-
+      모집·채용에서 남녀를 차별하는 것, 그리고 직무 수행에 필요하지 않은
+      용모·키·체중 등의 신체적 조건이나 미혼 조건을 제시·요구하는 것.
+    matching: >-
+      공고가 "남자만", "여직원 모집", "미혼 여성"처럼 성별이나 혼인 상태로
+      자격을 자를 때, 또는 직무와 무관한 신체 조건을 자격으로 적을 때 발동한다.
+      직무 성격상 특정 성이 불가피한 경우는 예외지만, 그 판단은 공고만으로
+      확정할 수 없으므로 공고에 적힌 사실만 적고 단정하지 않는다.
+    legal_basis: "남녀고용평등과 일·가정 양립 지원에 관한 법률 제7조(모집과 채용)"
+    effective: "2001-11-01"
+    sources:
+      - "법제처 국가법령정보센터 — 남녀고용평등과 일·가정 양립 지원에 관한 법률 (시행 2026-08-20)"
+
+
 # Known candidate rows for contributors — NOT entries yet. Each needs its own
 # verified statute citation + effective date + matching-scope check before
 # being promoted to an entry (scopes vary a lot; verify individually):

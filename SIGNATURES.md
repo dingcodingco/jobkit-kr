@@ -1,11 +1,11 @@
 # Signatures — The CareerOps Manifesto
 
 The manifesto lives in [MANIFESTO.md](./MANIFESTO.md) and at
-https://career-ops.org/manifesto. Anyone who practices CareerOps can sign —
+https://jobkit.org/manifesto. Anyone who practices CareerOps can sign —
 step-by-step instructions (non-devs welcome):
-https://career-ops.org/manifesto#how-to-sign
+https://jobkit.org/manifesto#how-to-sign
 
-**How to sign** — start at https://career-ops.org/manifesto: the **Sign on
+**How to sign** — start at https://jobkit.org/manifesto: the **Sign on
 GitHub** button opens a prefilled GitHub discussion. Write one sentence if
 you like (what changed in your search, or what you want hiring to become) —
 or nothing at all — and post it. We commit your signature, credited to you.
@@ -26,7 +26,7 @@ time: if a line is ever removed (fraud, or a signer's right to vanish), its
 number is retired with it — numbers are never reassigned. (The foundational signature predates the ledger itself; its `src:`
 points to the manifesto at the founding tag.) Lines not starting with `- @` are ignored by the website renderer.
 Signatures land in waves; yours will appear at
-https://career-ops.org/manifesto within minutes of merging, with a permanent
+https://jobkit.org/manifesto within minutes of merging, with a permanent
 personal card at `career-ops.org/manifesto/s/your-username`.
 
 **A note on the numbers.** Signing makes you part of this repository's
@@ -170,4 +170,3 @@ public commit with a stated reason.
 - @colincomstock | Colin Comstock | 2026-09-10 | id:95597475 | src:https://github.com/career-ops-hq/career-ops/discussions/4063 | n:122
 - @ddroid | Ahmad Munir | 2026-09-13 | id:142005659 | src:https://github.com/career-ops-hq/career-ops/discussions/4140 | n:123
 - @ttiimmothy | Timothy | 2026-09-13 | "Thanks for oss" | id:80472344 | src:https://github.com/career-ops-hq/career-ops/discussions/4141 | n:124
-- @wpu3325 | Wilson Pu | 2026-09-13 | "wpu3325 I want hiring processes to be as intentional, unbiased, and fair as possible." | id:22037720 | src:https://github.com/career-ops-hq/career-ops/discussions/4163 | n:125

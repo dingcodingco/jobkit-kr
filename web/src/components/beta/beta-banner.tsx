@@ -13,7 +13,7 @@ type SimilarIssue = { number: number; title: string; url: string };
 // ours. The search itself lives in lib/beta/issue-search.mjs, which returns
 // null when it could NOT run rather than folding that into an empty array —
 // see that file for the two days of silent false negatives that cost us.
-const REPO = "career-ops-hq/career-ops";
+const REPO = "career-ops-hq/jobkit";
 const findSimilar = (q: string) => searchIssues(q, REPO, fetch);
 
 // Beta/RC differentiator: a small version+channel pill (only on a pre-release

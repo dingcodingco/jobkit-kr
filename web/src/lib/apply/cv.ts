@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { careerOpsRoot, pdfPathStatusForReport, readApplications } from "@/lib/career-ops";
+import { careerOpsRoot, pdfPathStatusForReport, readApplications } from "@/lib/jobkit";
 import { companySlug } from "@/lib/company-slug.mjs";
 import { matchesTailoredCv, sortNewestFirst } from "./cv-match.mjs";
 import { reportNumberFromCell } from "./cv-selection.mjs";

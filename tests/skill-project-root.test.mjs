@@ -14,7 +14,7 @@ const entrypoints = [
   '.kimi',
   '.opencode',
   '.qwen',
-].map(dir => join(dir, 'skills', 'career-ops', 'SKILL.md'));
+].map(dir => join(dir, 'skills', 'jobkit', 'SKILL.md'));
 
 function findProjectRoot(skillPath) {
   let current = dirname(skillPath);
@@ -101,11 +101,11 @@ if (failures.length === 0) {
 }
 
 const fixtureRoot = mkdtempSync(join(tmpdir(), 'career-ops-materialized-symlink-'));
-const fixtureTarget = join(fixtureRoot, '.agents', 'skills', 'career-ops', 'SKILL.md');
-const fixturePointer = join(fixtureRoot, '.claude', 'skills', 'career-ops', 'SKILL.md');
-const fixtureTargetRelative = '.agents/skills/career-ops/SKILL.md';
-const fixturePointerRelative = '.claude/skills/career-ops/SKILL.md';
-const pointerTarget = '../../../.agents/skills/career-ops/SKILL.md';
+const fixtureTarget = join(fixtureRoot, '.agents', 'skills', 'jobkit', 'SKILL.md');
+const fixturePointer = join(fixtureRoot, '.claude', 'skills', 'jobkit', 'SKILL.md');
+const fixtureTargetRelative = '.agents/skills/jobkit/SKILL.md';
+const fixturePointerRelative = '.claude/skills/jobkit/SKILL.md';
+const pointerTarget = '../../../.agents/skills/jobkit/SKILL.md';
 
 try {
   mkdirSync(dirname(fixtureTarget), { recursive: true });

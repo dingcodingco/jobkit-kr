@@ -6,7 +6,7 @@
 // standalone instead. Discovery is by definition, not by a filename list: any
 // root-level script that grows its own normalizedTrackerScore is covered the day
 // it lands, which is the only way this stays honest while four copies exist
-// (career-ops-hq/career-ops#3796).
+// (career-ops-hq/jobkit#3796).
 import { readdirSync, readFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';

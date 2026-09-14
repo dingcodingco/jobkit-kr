@@ -61,7 +61,7 @@ export function ScoreMethodology() {
           </ul>
         </div>
         <a
-          href="https://career-ops.org/methodology"
+          href="https://jobkit.org/methodology"
           target="_blank"
           rel="noreferrer"
           aria-label="Full methodology (opens in a new tab)"

@@ -1,6 +1,6 @@
 import { execFile } from "node:child_process";
 import fs from "node:fs";
-import { careerOpsRoot, rootScript } from "@/lib/career-ops";
+import { careerOpsRoot, rootScript } from "@/lib/jobkit";
 import { selectDueFollowups, pickNextUpcoming } from "@/lib/core/followup-view.mjs";
 
 export const runtime = "nodejs";

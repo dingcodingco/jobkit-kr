@@ -824,7 +824,7 @@ export function resolveEmittedBy(packagePath = PACKAGE_JSON) {
   } catch {
     // fall through
   }
-  return 'career-ops';
+  return 'jobkit-kr';
 }
 
 // Deterministic (not random) so repeated runs against the same underlying
@@ -1662,7 +1662,7 @@ async function runSelfTest() {
     // caller (buildNoResponseFrictionSignals, tested below) is responsible
     // for turning that into "skip emission + warn", not a placeholder value.
     check(resolveRegion(join(CAREER_OPS, '__does-not-exist__.yml')) === null, 'resolveRegion degrades to null (not the string "unknown") when profile.yml is absent');
-    check(resolveEmittedBy(join(CAREER_OPS, '__does-not-exist__.json')) === 'career-ops', 'resolveEmittedBy degrades to a version-less string when package.json is unreadable');
+    check(resolveEmittedBy(join(CAREER_OPS, '__does-not-exist__.json')) === 'jobkit-kr', 'resolveEmittedBy degrades to a version-less string when package.json is unreadable');
 
     // resolveRegion: a mapped country goes through COUNTRY_REGION_MAP, and an
     // unmapped country degrades to a slugified `unmapped/<slug>` rather than

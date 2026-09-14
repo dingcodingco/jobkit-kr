@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { readReport, findApplication, pdfReadyForReport, trackerCanDelete } from "@/lib/career-ops";
+import { readReport, findApplication, pdfReadyForReport, trackerCanDelete } from "@/lib/jobkit";
 import { ReportView } from "@/components/report-view";
 
 export const dynamic = "force-dynamic";

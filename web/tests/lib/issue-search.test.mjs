@@ -90,10 +90,10 @@ test("the repo qualifier reaches the URL, and the query is encoded once", async 
     seen = url;
     return { ok: true, json: async () => ({ items: [] }) };
   };
-  await searchIssues('in:body "abc"', "career-ops-hq/career-ops", capture);
+  await searchIssues('in:body "abc"', "career-ops-hq/jobkit", capture);
   assert.match(seen, /^https:\/\/api\.github\.com\/search\/issues\?per_page=4&q=/);
   assert.equal(
     decodeURIComponent(seen.split("&q=")[1]),
-    'repo:career-ops-hq/career-ops is:issue is:open in:body "abc"',
+    'repo:career-ops-hq/jobkit is:issue is:open in:body "abc"',
   );
 });

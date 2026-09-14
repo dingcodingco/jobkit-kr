@@ -85,7 +85,7 @@ if (existsSync(digestPath)) {
 }
 
 // Output results
-console.log('\n=== career-ops sync check ===\n');
+console.log('\n=== jobkit sync check ===\n');
 
 if (errors.length === 0 && warnings.length === 0) {
   console.log('All checks passed.');

@@ -42,7 +42,7 @@
 화면의 역할이 평가한 역할과 다르면:
 - **후보자에게 알림**: "역할이 [X]에서 [Y]로 바뀐 것 같습니다. 새 역할로 다시 평가할까요, 아니면 새 title에 맞춰 답변만 조정할까요?"
 - **조정 선택 시**: 재평가 없이 새 역할에 맞춰 답변을 조정합니다.
-- **재평가 선택 시**: 전체 A-F 평가를 실행하고, report를 업데이트하고, 블록 G를 다시 생성합니다.
+- **재평가 선택 시**: 전체 A-G 평가를 실행하고, report를 업데이트하고, 블록 G를 다시 생성합니다.
 - **tracker 업데이트**: 필요한 경우 `applications.md`의 역할명을 수정합니다.
 
 ## Step 4 -- 지원서 질문 분석
@@ -105,7 +105,7 @@ Notes:
 후보자가 지원서를 제출했다고 확인하면:
 1. tracker status 변경은 `data/applications.md`를 직접 수정하지 않습니다. `batch/tracker-additions/`에 `Applied` 상태의 TSV update를 쓰고 `node merge-tracker.mjs`로 병합합니다.
 2. 최종 답변을 report의 블록 G에 업데이트합니다.
-3. 다음 단계로 `/career-ops contacto`를 제안해 hiring manager 또는 recruiter에게 LinkedIn outreach를 할 수 있게 합니다.
+3. 다음 단계로 `/jobkit contacto`를 제안해 hiring manager 또는 recruiter에게 LinkedIn outreach를 할 수 있게 합니다.
 
 ## 스크롤 처리
 

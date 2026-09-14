@@ -239,7 +239,7 @@ it returns one company's connections instead of your whole overlap.
 A run that exits 1 tells you why:
 
 ```
-Connections export not readable: /path/to/career-ops/data/Connections.csv
+Connections export not readable: /path/to/jobkit/data/Connections.csv
 Export it from LinkedIn (Settings → Data Privacy → Get a copy of your data → Connections),
 drop Connections.csv in data/, or pass --csv <path> pointing at the file.
 ```

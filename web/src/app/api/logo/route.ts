@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/jobkit";
 import { companyDomain } from "@/lib/company";
 import { companyCacheKey } from "@/lib/core/logo-cache-key.mjs";
 

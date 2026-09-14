@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { resolveCli } from "@/lib/clis";
-import { careerOpsRoot, readMemory } from "@/lib/career-ops";
+import { careerOpsRoot, readMemory } from "@/lib/jobkit";
 import { getSession } from "@/lib/apply/session";
 import { buildAnswerPrompt } from "@/lib/apply/answer-prompt.mjs";
 import { runPlanner } from "@/lib/apply/planner";

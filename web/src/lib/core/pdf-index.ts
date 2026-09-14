@@ -1,6 +1,6 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/jobkit";
 
 /**
  * ACL for the core's `resolvePdfIndexPath`/`resolveTrackerPath` (tracker-utils.mjs)

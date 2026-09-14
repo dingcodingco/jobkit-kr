@@ -1,11 +1,8 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-  - name: Setup Help / How-to Questions
-    url: https://discord.gg/8pRpHETxa4
-    about: For setup help and general questions, ask in Discord instead of opening an issue.
-  - name: GitHub Discussions
-    url: https://github.com/career-ops-hq/career-ops/discussions
-    about: For ideas, Q&A, and community conversations.
-  - name: "📤 Sharing scan results or automation output?"
-    url: https://github.com/career-ops-hq/career-ops/blob/main/DATA_CONTRACT.md
-    about: Your scans and reports stay local (data/ + reports/). Please don't file them here — they'd be public, and they're not needed upstream. Point any scheduled run at your own fork.
+  - name: 원본 프로젝트 (career-ops)
+    url: https://github.com/career-ops-hq/career-ops
+    about: 한국 시장과 무관한 코어 기능 문제는 원본 저장소를 먼저 확인하세요.
+  - name: 스캔 결과를 그대로 올리지 마세요
+    url: https://github.com/dingcodingco/jobkit-kr/blob/main/DATA_CONTRACT.md
+    about: data/ 와 reports/ 에 쌓이는 파일에는 이력서와 지원 이력이 들어 있습니다. 이슈에 붙이면 공개됩니다.

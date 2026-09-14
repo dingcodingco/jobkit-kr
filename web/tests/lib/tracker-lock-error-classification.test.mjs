@@ -1,4 +1,4 @@
-// tracker-lock.ts imports `@/lib/career-ops` (the path alias), which plain
+// tracker-lock.ts imports `@/lib/jobkit` (the path alias), which plain
 // `node --test` cannot resolve without the Next.js build — same constraint as
 // pipeline.ts, same workaround already established in
 // tests/lib/pipeline-local-today.test.mjs: read the source and assert the

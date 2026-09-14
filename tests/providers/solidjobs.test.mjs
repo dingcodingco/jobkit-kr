@@ -47,8 +47,8 @@ try {
   // fetch() parses { jobs: [...] } response with company from API
   const fakeJobs = {
     jobs: [
-      { title: 'Senior Dev', url: 'https://solid.jobs/o/abc123/career-ops', company: 'Acme Corp', locations: ['Warszawa', 'Remote'] },
-      { title: 'Junior Dev', url: 'https://solid.jobs/o/def456/career-ops', company: 'Beta Inc', locations: ['Kraków'] },
+      { title: 'Senior Dev', url: 'https://solid.jobs/o/abc123/jobkit', company: 'Acme Corp', locations: ['Warszawa', 'Remote'] },
+      { title: 'Junior Dev', url: 'https://solid.jobs/o/def456/jobkit', company: 'Beta Inc', locations: ['Kraków'] },
     ],
   };
   const parsed = await sj.fetch(
@@ -64,14 +64,14 @@ try {
   if (parsed[0].location === 'Warszawa, Remote') pass('solidjobs.fetch() joins locations array');
   else fail(`solidjobs.fetch() location is ${JSON.stringify(parsed[0].location)}, expected "Warszawa, Remote"`);
 
-  if (parsed[0].title === 'Senior Dev' && parsed[0].url === 'https://solid.jobs/o/abc123/career-ops') {
+  if (parsed[0].title === 'Senior Dev' && parsed[0].url === 'https://solid.jobs/o/abc123/jobkit') {
     pass('solidjobs.fetch() maps title and url correctly');
   } else {
     fail(`solidjobs.fetch() title/url wrong: ${JSON.stringify(parsed[0])}`);
   }
 
   // fetch() falls back to entry.name when j.company is missing
-  const noCompanyJobs = { jobs: [{ title: 'Tester', url: 'https://solid.jobs/o/xyz/career-ops', locations: [] }] };
+  const noCompanyJobs = { jobs: [{ title: 'Tester', url: 'https://solid.jobs/o/xyz/jobkit', locations: [] }] };
   const fallback = await sj.fetch(
     { name: 'SolidJobs IT', careers_url: 'https://solid.jobs/public-api/offers/it?campaign=career-ops' },
     { transport: 'http', fetchJson: async () => noCompanyJobs, fetchText: async () => '' },
@@ -165,7 +165,7 @@ try {
   // fetch() filters out jobs with empty/missing url
   const mixedJobs = {
     jobs: [
-      { title: 'Has URL', url: 'https://solid.jobs/o/1/career-ops', company: 'A', locations: [] },
+      { title: 'Has URL', url: 'https://solid.jobs/o/1/jobkit', company: 'A', locations: [] },
       { title: 'No URL', url: '', company: 'B', locations: [] },
       { title: 'Missing URL', company: 'C', locations: [] },
     ],
@@ -178,7 +178,7 @@ try {
   else fail(`solidjobs.fetch() should filter empty URLs, got ${filtered.length} jobs: ${JSON.stringify(filtered)}`);
 
   // fetch() handles string locations (non-array)
-  const stringLocJobs = { jobs: [{ title: 'Dev', url: 'https://solid.jobs/o/2/career-ops', company: 'X', locations: 'Warsaw' }] };
+  const stringLocJobs = { jobs: [{ title: 'Dev', url: 'https://solid.jobs/o/2/jobkit', company: 'X', locations: 'Warsaw' }] };
   const strLoc = await sj.fetch(
     { name: 'SolidJobs IT', careers_url: 'https://solid.jobs/public-api/offers/it?campaign=career-ops' },
     { transport: 'http', fetchJson: async () => stringLocJobs, fetchText: async () => '' },
@@ -203,12 +203,12 @@ try {
   else fail(`solidjobs.fetch() should pass redirect:"error", got: ${JSON.stringify(capturedOpts)}`);
 
   // fetch() tolerates malformed array members without crashing
-  const malformedMembers = { jobs: [null, 7, { title: 'OK', url: 'https://solid.jobs/o/3/career-ops', company: 'Z' }] };
+  const malformedMembers = { jobs: [null, 7, { title: 'OK', url: 'https://solid.jobs/o/3/jobkit', company: 'Z' }] };
   const safeParsed = await sj.fetch(
     { name: 'SolidJobs IT', careers_url: 'https://solid.jobs/public-api/offers/it?campaign=career-ops' },
     { transport: 'http', fetchJson: async () => malformedMembers, fetchText: async () => '' },
   );
-  if (safeParsed.length === 1 && safeParsed[0].url === 'https://solid.jobs/o/3/career-ops') {
+  if (safeParsed.length === 1 && safeParsed[0].url === 'https://solid.jobs/o/3/jobkit') {
     pass('solidjobs.fetch() skips malformed jobs members without crashing');
   } else {
     fail(`solidjobs.fetch() malformed members handling failed: ${JSON.stringify(safeParsed)}`);

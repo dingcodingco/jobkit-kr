@@ -27,7 +27,8 @@ const readmes = readdirSync(ROOT).filter((f) => /^README[\w.-]*\.md$/.test(f)).s
 // The whole family must be present: a marker check over an empty (or
 // mis-globbed) list would pass vacuously, which is exactly the blind-check
 // class this suite exists to avoid.
-if (readmes.length >= 17) pass(`found ${readmes.length} README files (17 expected as of Aug 2026)`);
+// 포크 기준: 번역본 15종을 제거했으므로 README.md + README.upstream.md 두 개다.
+if (readmes.length >= 2) pass(`found ${readmes.length} README files (2 expected in this fork)`);
 else fail(`only ${readmes.length} README*.md files found — glob broken or files removed`);
 
 for (const file of readmes) {
@@ -100,9 +101,12 @@ for (const file of readmes) {
   // write ranges with a preposition, "de A à F" / "من A إلى F", which is how
   // two stale lines survived three sweeps in Aug 2026) — variants need human
   // audit; this only catches a translation with no current structure at all.
-  if (content.includes('A-H') || content.includes('A–H')) {
-    pass(`${file}: mentions the A-H report structure`);
+  // 포크 기준: 영문 modes/oferta.md와 한국어 modes/ko/gonggo.md 둘 다 Block A-G다.
+  // 문서와 package.json이 말하는 A-H는 원본 안에서 이미 어긋나 있던 표기이고,
+  // 실제 블록은 G에서 끝난다. README는 실재하는 구조를 적어야 한다.
+  if (/A[-–][GH]/.test(content)) {
+    pass(`${file}: mentions a current report structure`);
   } else {
-    fail(`${file}: never mentions A-H — translation predates the current report structure`);
+    fail(`${file}: never mentions the report block structure`);
   }
 }

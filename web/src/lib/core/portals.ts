@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import * as yaml from "js-yaml";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/jobkit";
 import { DEFAULT_FILTERS, cleanChips, type ExploreFilters } from "@/lib/explore";
 import { profileTargetKeywords } from "@/lib/profile-keywords.mjs";
 

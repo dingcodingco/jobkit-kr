@@ -102,8 +102,8 @@ function isLegacyReexec() {
 }
 
 const CANONICAL_REPO = 'https://github.com/career-ops-hq/career-ops.git';
-const RAW_VERSION_URL = 'https://raw.githubusercontent.com/career-ops-hq/career-ops/main/VERSION';
-const RELEASES_API = 'https://api.github.com/repos/career-ops-hq/career-ops/releases/latest';
+const RAW_VERSION_URL = 'https://raw.githubusercontent.com/career-ops-hq/jobkit/main/VERSION';
+const RELEASES_API = 'https://api.github.com/repos/career-ops-hq/jobkit/releases/latest';
 
 // Matches a semver, with or without a leading `v` and an optional
 // Release Please component prefix (e.g. `career-ops-v1.9.0` → `1.9.0`).
@@ -372,6 +372,7 @@ const SYSTEM_PATHS = [
   'fonts/',
   'examples/',
   'config/profile.example.yml',
+  'config/profile.example.en.yml',
   'config/local-paths.example.txt',
   '.env.example',
   '.editorconfig',
@@ -397,22 +398,8 @@ const SYSTEM_PATHS = [
   'MAINTAINERS.md',
   'ARCHITECTURE.md',
   'README.md',
-  'README.ar.md',
-  'README.cn.md',
-  'README.da.md',
-  'README.de.md',
-  'README.es.md',
-  'README.fr.md',
-  'README.hi.md',
-  'README.ja.md',
-  'README.ko-KR.md',
-  'README.pl.md',
-  'README.pt-BR.md',
-  'README.ru.md',
-  'README.ta.md',
-  'README.ua.md',
-  'README.zh-TW.md',
-  'README.tr.md',
+  'README.upstream.md',
+  'NOTICE',
   'CHANGELOG.md',
   'CODE_OF_CONDUCT.md',
   'CONTRIBUTORS.md',
@@ -421,9 +408,7 @@ const SYSTEM_PATHS = [
   'LEGAL_DISCLAIMER.md',
   'SECURITY.md',
   'SUPPORT.md',
-  'TRADEMARK.md',
   'LICENSE',
-  'CITATION.cff',
   'funding.json',
   '.editorconfig',
   '.github/',
@@ -1812,7 +1797,7 @@ async function check() {
   // deliberately conservative: version checks still work offline/behind a
   // restricted git transport.
   try { localCommit = gitQuiet('rev-parse', 'HEAD'); } catch { /* no git checkout */ }
-  const remoteRef = await curlGet('https://api.github.com/repos/career-ops-hq/career-ops/git/ref/heads/main', [
+  const remoteRef = await curlGet('https://api.github.com/repos/career-ops-hq/jobkit/git/ref/heads/main', [
     '--header', 'Accept: application/vnd.github+json',
     '--header', 'User-Agent: career-ops-update-checker',
   ]);
@@ -2601,7 +2586,7 @@ async function apply() {
     console.log('\n-- The CareerOps Manifesto ------------------------------');
     console.log('A new way of job searching is taking shape. You are');
     console.log('already practicing it. Read it, sign it if you want to help:');
-    console.log('    npm run manifesto  ·  https://career-ops.org/manifesto?utm_source=updater');
+    console.log('    npm run manifesto  ·  https://jobkit.org/manifesto?utm_source=updater');
 
   } finally {
     // Remove lock

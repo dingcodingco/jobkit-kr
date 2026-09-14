@@ -115,7 +115,7 @@ TopDev and CareerLink are the interesting case: both are technically
 scrapable, but this project treats a `robots.txt` entry naming Claude or
 Anthropic's crawler as the site owner's stated intent, not a literal
 User-Agent string to route around under a different name — even though
-`providers/*.mjs` all identify as `career-ops`, not `ClaudeBot`.
+`providers/*.mjs` all identify as `jobkit-kr`, not `ClaudeBot`.
 
 When adding a new provider, add a new non-helper module under `providers/` and
 update this table in the same PR — see

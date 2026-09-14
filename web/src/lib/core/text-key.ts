@@ -1,6 +1,6 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { careerOpsRoot } from "@/lib/career-ops";
+import { careerOpsRoot } from "@/lib/jobkit";
 import { normalizeTextKey as fallbackKey } from "./normalize-text-key.mjs";
 
 /**

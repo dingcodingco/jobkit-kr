@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 import { resolveTailoredCv } from "@/lib/apply/cv";
-import { careerOpsRoot, isRegularContainedFile, pdfPathStatusForReport } from "@/lib/career-ops";
+import { careerOpsRoot, isRegularContainedFile, pdfPathStatusForReport } from "@/lib/jobkit";
 import { companySlug } from "@/lib/company-slug.mjs";
 import { matchesTailoredCv, sortNewestFirst } from "@/lib/apply/cv-match.mjs";
 

@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 import { CompanyLogo } from "@/components/company-logo";
 import { scoreNum, scoreTone } from "@/lib/format";
 import { companyPresentation } from "@/lib/company-presentation.mjs";
-import type { Application } from "@/lib/career-ops";
+import type { Application } from "@/lib/jobkit";
 
 // Awaiting-decision row: a scored role with no terminal status. Primary action
 // opens the report (PDF + Apply live there). Skip / Applied still write status.

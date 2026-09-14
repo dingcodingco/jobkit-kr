@@ -5,7 +5,7 @@ import { Compass, ChevronDown, RotateCcw, AlertTriangle, Sparkles, Settings } fr
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { instrumentSerif } from "@/lib/fonts";
-import type { Application, InboxJob } from "@/lib/career-ops";
+import type { Application, InboxJob } from "@/lib/jobkit";
 import { normalizeTextKey } from "@/lib/core/normalize-text-key.mjs";
 import { paramsToFilters, paramsToAi, type ExploreFilters } from "@/lib/explore";
 import { FilterBuilder } from "./filter-builder";

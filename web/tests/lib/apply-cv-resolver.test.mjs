@@ -15,7 +15,7 @@
  * registration, and no core-only-install skip guard, because web/ is always
  * present when this suite runs.
  *
- * resolveTailoredCv() is TypeScript that reaches web/src/lib/career-ops via
+ * resolveTailoredCv() is TypeScript that reaches web/src/lib/jobkit via
  * the `@/` path alias (Next's tsconfig paths). Node 22 type-strips .ts on
  * import, but it does NOT understand that alias — `npm test` here is plain
  * `node --test`, with no webpack/SWC in the loop. The tiny inline loader
@@ -63,8 +63,8 @@ const { resolveTailoredCv } = await import('../../src/lib/apply/cv.ts');
 const { sortNewestFirst } = await import('../../src/lib/apply/cv-match.mjs');
 
 // Provision a throwaway career-ops root with an output/ dir, redirected via
-// the same CAREER_OPS_ROOT override career-ops.ts's careerOpsRoot() reads
-// (see web/src/lib/career-ops.ts) — no monkeypatching fs needed.
+// the same CAREER_OPS_ROOT override jobkit.ts's careerOpsRoot() reads
+// (see web/src/lib/jobkit.ts) — no monkeypatching fs needed.
 async function withFixture(files, fn) {
   const root = mkdtempSync(join(tmpdir(), 'cv-resolver-'));
   const outputDir = join(root, 'output');

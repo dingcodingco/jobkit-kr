@@ -1,40 +1,40 @@
 // Shared CLI skill entrypoint bootstrap — used by npx init and update-system.
-// Ensures every supported CLI gets .*/skills/career-ops/SKILL.md even when the
+// Ensures every supported CLI gets .*/skills/jobkit/SKILL.md even when the
 // cloned release predates a CLI (e.g. Grok on v1.13.0). Materializes pointer
 // files to canonical content on filesystems without symlink support.
 import { readFileSync, writeFileSync, existsSync, mkdirSync, lstatSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 
-export const CANONICAL_SKILL_PATH = '.agents/skills/career-ops/SKILL.md';
+export const CANONICAL_SKILL_PATH = '.agents/skills/jobkit/SKILL.md';
 
 export const SKILL_ENTRYPOINTS = [
   {
-    path: '.claude/skills/career-ops/SKILL.md',
-    pointer: '../../../.agents/skills/career-ops/SKILL.md',
+    path: '.claude/skills/jobkit/SKILL.md',
+    pointer: '../../../.agents/skills/jobkit/SKILL.md',
   },
   {
-    path: '.cursor/skills/career-ops/SKILL.md',
-    pointer: '../../../.agents/skills/career-ops/SKILL.md',
+    path: '.cursor/skills/jobkit/SKILL.md',
+    pointer: '../../../.agents/skills/jobkit/SKILL.md',
   },
   {
-    path: '.opencode/skills/career-ops/SKILL.md',
-    pointer: '../../../.agents/skills/career-ops/SKILL.md',
+    path: '.opencode/skills/jobkit/SKILL.md',
+    pointer: '../../../.agents/skills/jobkit/SKILL.md',
   },
   {
-    path: '.qwen/skills/career-ops/SKILL.md',
-    pointer: '../../../.agents/skills/career-ops/SKILL.md',
+    path: '.qwen/skills/jobkit/SKILL.md',
+    pointer: '../../../.agents/skills/jobkit/SKILL.md',
   },
   {
-    path: '.antigravitycli/skills/career-ops/SKILL.md',
-    pointer: '../../../.agents/skills/career-ops/SKILL.md',
+    path: '.antigravitycli/skills/jobkit/SKILL.md',
+    pointer: '../../../.agents/skills/jobkit/SKILL.md',
   },
   {
-    path: '.grok/skills/career-ops/SKILL.md',
-    pointer: '../../../.agents/skills/career-ops/SKILL.md',
+    path: '.grok/skills/jobkit/SKILL.md',
+    pointer: '../../../.agents/skills/jobkit/SKILL.md',
   },
   {
-    path: '.kimi/skills/career-ops/SKILL.md',
-    pointer: '../../../.agents/skills/career-ops/SKILL.md',
+    path: '.kimi/skills/jobkit/SKILL.md',
+    pointer: '../../../.agents/skills/jobkit/SKILL.md',
   },
 ];
 

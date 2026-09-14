@@ -4,7 +4,7 @@
  * Plain .mjs (same pattern as pdf-paths.mjs / clean-chips.mjs) so this can be
  * unit-tested with `node --test`, no TypeScript build step. `spawnFn`,
  * `execPath`, and `root` are injected rather than importing node:child_process
- * or career-ops.ts directly, keeping this module free of TypeScript
+ * or jobkit.ts directly, keeping this module free of TypeScript
  * dependencies and letting tests substitute a fake child process.
  *
  * Runs generate-pdf.mjs and mark-pdf-ready.mjs as plain Node child processes

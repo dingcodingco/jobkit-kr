@@ -2322,10 +2322,10 @@ export function loadDedupSnapshot(policy = {}, canonicalize = defaultCompanyNorm
 }
 
 // Standard skeleton created on fresh install — matches the format documented
-// in modes/pipeline.md and expected by /career-ops pipeline.
+// in modes/pipeline.md and expected by /jobkit pipeline.
 const PIPELINE_SKELETON = `# Pipeline — Pending URLs
 
-Paste job URLs below as \`- [ ] {url}\` then run \`/career-ops pipeline\`.
+Paste job URLs below as \`- [ ] {url}\` then run \`/jobkit pipeline\`.
 
 ## Pending
 
@@ -3532,8 +3532,8 @@ async function main() {
   // The run completed (or was a dry run) — disarm the failure row.
   registerRunFailureSnapshot(null);
 
-  console.log(`\n→ Run /career-ops pipeline to evaluate new offers.`);
-  console.log('→ Share results and get help: https://discord.gg/8pRpHETxa4');
+  console.log(`\n→ Run /jobkit pipeline to evaluate new offers.`);
+  console.log('→ 문제가 있으면: https://github.com/dingcodingco/jobkit-kr/issues');
 
   if (jsonMode) {
     const filtered = totalFilteredTitle + totalFilteredTier + totalFilteredLocation
@@ -3566,7 +3566,7 @@ async function main() {
       || !!process.env.WT_SESSION || !!process.env.KITTY_WINDOW_ID
       || parseInt(process.env.VTE_VERSION || '0', 10) >= 5000;
     const link = osc8
-      ? '\x1b]8;;https://career-ops.org/manifesto?utm_source=cli\x1b\\career-ops.org/manifesto\x1b]8;;\x1b\\'
+      ? '\x1b]8;;https://jobkit.org/manifesto?utm_source=cli\x1b\\career-ops.org/manifesto\x1b]8;;\x1b\\'
       : 'career-ops.org/manifesto?utm_source=cli';
     console.log(`\nthe practice behind this tool has a name and a manifesto: ${link}`);
     try { writeFileSync('.manifesto-noted', new Date().toISOString() + '\n'); } catch { /* best-effort */ }

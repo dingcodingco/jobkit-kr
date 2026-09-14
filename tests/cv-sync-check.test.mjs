@@ -51,7 +51,7 @@ test('it reaches its checks instead of throwing at module scope', () => {
   try {
     const r = runAgainst(dir);
     assert.ok(!looksLikeCrash(r.all), `crashed instead of running:\n${r.all.slice(0, 400)}`);
-    assert.match(r.stdout, /career-ops sync check/, 'no report header — the run never reached its checks');
+    assert.match(r.stdout, /jobkit sync check/, 'no report header — the run never reached its checks');
   } finally {
     rmSync(dir, { recursive: true, force: true, maxRetries: 10 });
   }

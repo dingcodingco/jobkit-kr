@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { execFile } from "node:child_process";
 import fs from "node:fs";
-import { careerOpsRoot, rootScript } from "@/lib/career-ops";
+import { careerOpsRoot, rootScript } from "@/lib/jobkit";
 import { canonicalizeStatus } from "@/lib/core/states";
 import { parseCliJson, trackerRowArg, clientErrorMessage } from "@/lib/status-cli.mjs";
 

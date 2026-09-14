@@ -1,12 +1,12 @@
 {
-  "name": "career-ops",
+  "name": "jobkit-kr",
   "version": "1.32.0",
-  "description": "Open-source AI job search that runs locally in your AI coding CLI: scan job portals, evaluate listings into a structured A-H report with a 1-5 score, tailor your CV, track applications",
+  "description": "한국 채용 시장용 구직 파이프라인 — 원티드·점핏 공고를 수집해 내 기준·이력서와 대조하고, 지원 현황까지 추적한다",
   "author": {
-    "name": "santifer",
-    "url": "https://santifer.io"
+    "name": "dingcodingco",
+    "url": "https://github.com/dingcodingco/jobkit-kr"
   },
   "skills": [
-    "./.agents/skills/career-ops"
+    "./.agents/skills/jobkit"
   ]
 }

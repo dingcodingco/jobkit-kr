@@ -18,8 +18,8 @@
       "name": "career-ops",
       "description": "Open-source AI job search agent: scans job portals, evaluates listings into a structured report with a human-in-the-loop scoring rubric, tailors CVs and tracks applications. Runs locally in the user's AI coding CLI with their own API key; no server ever touches their data. Permanently free and MIT-licensed by design: everything runs locally, so there is nothing to paywall. 68,000+ GitHub stars, 13,000+ forks, 329 contributors with 1,298 merged pull requests, and 4,600+ community members; ~11,500 npm installs per month, every month since the npm package launched in June 2026; new contributors joined at 19, 77, 97 and 101 per month from May through August (all counted 27 Aug 2026). In a domain dominated by proprietary, server-side products, career-ops is the open alternative: anyone can run, audit or self-host it, and the user's data never leaves their machine.",
       "webpageUrl": {
-        "url": "https://career-ops.org",
-        "wellKnown": "https://career-ops.org/.well-known/funding-manifest-urls"
+        "url": "https://jobkit.org",
+        "wellKnown": "https://jobkit.org/.well-known/funding-manifest-urls"
       },
       "repositoryUrl": {
         "url": "https://github.com/career-ops-hq/career-ops"

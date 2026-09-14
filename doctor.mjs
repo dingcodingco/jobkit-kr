@@ -570,7 +570,7 @@ async function checkPortalSlugs(root) {
 
 const PIPELINE_SKELETON = `# Pipeline — Pending URLs
 
-Paste job URLs below as \`- [ ] {url}\` then run \`/career-ops pipeline\`.
+Paste job URLs below as \`- [ ] {url}\` then run \`/jobkit pipeline\`.
 
 ## Pending
 
@@ -707,7 +707,7 @@ async function main() {
     const warnNote = warnings > 0 ? ` (${warnings} warning${warnings === 1 ? '' : 's'} — see above)` : '';
     console.log(`Result: All checks passed${warnNote}. You're ready to go! Run \`claude\` (or \`opencode\`) to start.`);
     console.log('');
-    console.log('Join the community: https://discord.gg/8pRpHETxa4');
+    console.log('문제가 있으면: https://github.com/dingcodingco/jobkit-kr/issues');
     console.log('Read the manifesto: `npm run manifesto` — a new way of job searching is taking shape, and you are now part of it.');
     process.exit(0);
   }

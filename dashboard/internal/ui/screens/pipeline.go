@@ -615,7 +615,7 @@ func (m PipelineModel) handleKey(msg tea.KeyMsg) (PipelineModel, tea.Cmd) {
 
 	case "m":
 		return m, func() tea.Msg {
-			return PipelineOpenURLMsg{URL: "https://career-ops.org/manifesto?utm_source=dashboard-shortcut"}
+			return PipelineOpenURLMsg{URL: "https://jobkit.org/manifesto?utm_source=dashboard-shortcut"}
 		}
 
 	case "d":
@@ -623,7 +623,7 @@ func (m PipelineModel) handleKey(msg tea.KeyMsg) (PipelineModel, tea.Cmd) {
 			manifest := data.LoadPDFManifest(m.careerOpsPath)
 			candidates := data.ResolvePDFs(m.careerOpsPath, app, manifest)
 			if len(candidates) == 0 {
-				m.flash = "No CV PDF found for this application — generate one with /career-ops pdf"
+				m.flash = "No CV PDF found for this application — generate one with /jobkit pdf"
 			} else {
 				return m, m.openPDFCmd(candidates[0]) // newest first
 			}
@@ -647,7 +647,7 @@ func (m PipelineModel) handleKey(msg tea.KeyMsg) (PipelineModel, tea.Cmd) {
 				}
 			}
 			if !found || entry.HTMLPath == "" {
-				m.flash = "No source HTML found for this application — run /career-ops pdf first"
+				m.flash = "No source HTML found for this application — run /jobkit pdf first"
 				return m, nil
 			}
 			if _, err := os.Stat(filepath.Join(m.careerOpsPath, filepath.FromSlash(entry.HTMLPath))); err != nil {
@@ -1992,7 +1992,7 @@ func (m PipelineModel) renderHelp() string {
 	// terminals without support show the same text, just not clickable. The
 	// gap math uses the plain text so the escapes never skew the layout.
 	const brandPlain = "built on the CareerOps Manifesto · career-ops by santifer.io"
-	manifestoLink := "\x1b]8;;https://career-ops.org/manifesto?utm_source=dashboard\x1b\\built on the CareerOps Manifesto\x1b]8;;\x1b\\"
+	manifestoLink := "\x1b]8;;https://jobkit.org/manifesto?utm_source=dashboard\x1b\\built on the CareerOps Manifesto\x1b]8;;\x1b\\"
 	brand := lipgloss.NewStyle().Foreground(m.theme.Overlay).Render(manifestoLink + " · career-ops by santifer.io")
 
 	keys := keyStyle.Render("↑↓/jk") + descStyle.Render(i18n.Current.HelpNav) +

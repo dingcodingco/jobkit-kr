@@ -3,7 +3,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { resolveCli } from "@/lib/clis";
-import { careerOpsRoot, readMemory } from "@/lib/career-ops";
+import { careerOpsRoot, readMemory } from "@/lib/jobkit";
 import { assembleDedupContext } from "@/lib/core/discover";
 
 // AI search orchestrates modes/discover.md by running the USER'S configured CLI

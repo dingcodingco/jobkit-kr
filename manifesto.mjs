@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const PAGE = 'https://career-ops.org/manifesto';
+const PAGE = 'https://jobkit.org/manifesto';
 
 try {
   const text = readFileSync(join(here, 'MANIFESTO.md'), 'utf8');

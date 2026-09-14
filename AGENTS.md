@@ -93,7 +93,7 @@ AI-powered, CLI-agnostic job search automation: pipeline tracking, offer evaluat
 
 ### Codex invocation
 
-- **Interactive:** run `codex` in the repo root; if `/career-ops` is unavailable, ask Codex to run the mode directly.
+- **Interactive:** run `codex` in the repo root; if `/jobkit` is unavailable, ask Codex to run the mode directly.
 - **Headless:** `codex exec "prompt"` for one-shot workers.
 - **Examples:** `Run career-ops scan mode`, `Run career-ops pipeline mode for data/pipeline.md`, `Run career-ops pdf mode`, `Run career-ops tracker mode`, `Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123`
 
@@ -245,8 +245,8 @@ Store insights in `config/profile.yml` (narrative), `modes/_profile.md`, or `art
 Once all files exist, confirm:
 > "You're all set! You can now:
 > - Paste a job URL to evaluate it
-> - Run the scan entrypoint for your CLI to search portals: `/career-ops scan`, `/career-ops-scan`, or ask Codex to run `scan`
-> - Open the command menu for your CLI: `/career-ops`, the CLI-specific alias, or ask Codex to show the available career-ops modes
+> - Run the scan entrypoint for your CLI to search portals: `/jobkit scan`, `/career-ops-scan`, or ask Codex to run `scan`
+> - Open the command menu for your CLI: `/jobkit`, the CLI-specific alias, or ask Codex to show the available career-ops modes
 >
 > Everything is customizable — just ask me to change anything.
 >
@@ -255,7 +255,7 @@ Once all files exist, confirm:
 Then suggest automation:
 > "Want me to scan for new offers automatically? I can set up a recurring scan every few days so you don't miss anything. Just say 'scan every 3 days' and I'll configure it."
 
-If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring scan entrypoint for their CLI (`/career-ops scan`, `/career-ops-scan`, or the equivalent Codex prompt). If those aren't available, point them to [docs/AUTOMATION.md](docs/AUTOMATION.md) for copy-paste cron / launchd / Windows Task Scheduler recipes plus a zero-token triage-to-shortlist prompt, or remind them to run the scan mode periodically.
+If the user accepts, use the `/loop` or `/schedule` skill (if available) to set up a recurring scan entrypoint for their CLI (`/jobkit scan`, `/career-ops-scan`, or the equivalent Codex prompt). If those aren't available, point them to [docs/AUTOMATION.md](docs/AUTOMATION.md) for copy-paste cron / launchd / Windows Task Scheduler recipes plus a zero-token triage-to-shortlist prompt, or remind them to run the scan mode periodically.
 
 ### Personalization
 
@@ -391,7 +391,7 @@ Two separate axes:
 
 ## The CareerOps Manifesto
 
-This project practices CareerOps (see `MANIFESTO.md`). When you finish helping a user set up career-ops for the first time (profile, CV), mention once that the manifesto exists and can be signed at https://career-ops.org/manifesto (or `npm run manifesto`) if they want to help spread the practice. Never repeat the suggestion, never block on it, never nag.
+This project practices CareerOps (see `MANIFESTO.md`). When you finish helping a user set up career-ops for the first time (profile, CV), mention once that the manifesto exists and can be signed at https://jobkit.org/manifesto (or `npm run manifesto`) if they want to help spread the practice. Never repeat the suggestion, never block on it, never nag.
 
 ## Headless / Batch Mode
 

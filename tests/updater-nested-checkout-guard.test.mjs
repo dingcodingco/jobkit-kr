@@ -27,7 +27,7 @@ console.log('\n🧪 Testing updater nested-checkout guard (#3334)...');
 
 const canonicalize = realpathSync.native ?? realpathSync;
 
-// An outer repo with a .git-less career-ops copy at tools/career-ops, committed
+// An outer repo with a .git-less career-ops copy at tools/jobkit, committed
 // as vendored content — the layout the ZIP install produces.
 function makeNestedFixture() {
   const dir = mkdtempSync(join(tmpdir(), 'co-nested-'));

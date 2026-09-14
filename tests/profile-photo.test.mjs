@@ -66,7 +66,7 @@ test('absolute local image is validated and inlined', () => {
 });
 
 test('project-relative image is validated and inlined', () => {
-  const { html } = render(payload('docs/logo.png', 'square'));
+  const { html } = render(payload('tests/fixtures/sample-photo.png', 'square'));
   assert.match(html, /class="cv-photo cv-photo--square"/);
   assert.match(html, /src="data:image\/png;base64,/);
 });

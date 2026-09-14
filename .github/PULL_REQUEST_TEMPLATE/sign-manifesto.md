@@ -6,12 +6,12 @@ labels: manifesto-signature
 ---
 
 <!-- Thank you for signing The CareerOps Manifesto.
-     Canonical page: https://career-ops.org/manifesto -->
+     Canonical page: https://jobkit.org/manifesto -->
 
 > CareerOps is the practice of running a job search the way engineers run production: with evidence, with discipline, and with tools on the candidate's side of the table.
 >
 > — Coined by Santiago Fernández de Valderrama Aparicio in
-> [The CareerOps Manifesto](https://career-ops.org/manifesto), July 14, 2026.
+> [The CareerOps Manifesto](https://jobkit.org/manifesto), July 14, 2026.
 
 ## My signature
 

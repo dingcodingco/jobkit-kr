@@ -3,7 +3,7 @@
  *
  * Plain .mjs (same pattern as clean-chips.mjs / tracker-table.mjs) so this can
  * be unit-tested with `node --test`, no TypeScript build step. `careerOpsRoot`
- * and `findReportFile` are passed in rather than imported from career-ops.ts,
+ * and `findReportFile` are passed in rather than imported from jobkit.ts,
  * keeping this module free of TypeScript dependencies.
  */
 import fs from "node:fs";
@@ -42,7 +42,7 @@ export function slugify(s) {
  * @param {string} input - The report number (e.g. "018").
  * @param {string} today - YYYY-MM-DD.
  * @param {string} root - careerOpsRoot().
- * @param {(input: string) => string | null} findReportFile - career-ops.ts's findReportFile.
+ * @param {(input: string) => string | null} findReportFile - jobkit.ts's findReportFile.
  * @returns {{ok: true, paths: PdfPaths} | {ok: false, error: string}}
  */
 export function resolvePdfPaths(input, today, root, findReportFile) {

@@ -3,21 +3,21 @@
 # This is the single source of truth for your personal data across all modes.
 
 candidate:
-  full_name: "Jane Smith"
-  email: "jane@example.com"
+  full_name: "홍길동"
+  email: "gildong@example.com"
   # Optional. Any other mailboxes that are also you. Follow-up contact extraction uses these to
   # avoid reporting your own address as somebody to chase, when a tracker note happens to cite it.
   # alternate_emails:
   #   - "jane@previous-employer.example"
-  phone: "+1-555-0123"
-  # Optional. Used by `/career-ops email` contact blocks in markets where WeChat
+  phone: "010-0000-0000"
+  # Optional. Used by `/jobkit email` contact blocks in markets where WeChat
   # is an expected recruiting channel. Omit or leave blank if not applicable.
   wechat: ""
-  location: "San Francisco, CA"
-  linkedin: "linkedin.com/in/janesmith"
-  portfolio_url: "https://janesmith.dev"
-  github: "github.com/janesmith"
-  twitter: "https://x.com/janesmith"
+  location: "서울"
+  linkedin: "linkedin.com/in/gildong"
+  portfolio_url: ""
+  github: "github.com/gildong"
+  twitter: ""
   # Optional profile photo for the PDF CV (opt-in, #264). Leave empty to omit it
   # entirely: US/UK and many-market ATS penalize photos, so the photoless layout
   # is the default. Set it only for DACH/European markets (Germany, Austria,
@@ -68,21 +68,21 @@ narrative:
   #   password: "demo-2026"
 
 compensation:
-  target_range: "$150K-200K"     # Your target total comp
-  currency: "USD"
-  minimum: "$120K"               # Walk-away number
-  location_flexibility: "Remote preferred, 1 week/month on-site possible"
+  target_range: "5,500만원 ~ 7,000만원"   # 희망 연봉(총액 기준)
+  currency: "KRW"
+  minimum: "5,000만원"                    # 이 밑으로는 안 간다는 선
+  location_flexibility: "서울·판교 출퇴근 가능, 주 2회 재택 선호"
 
 location:
-  country: "United States"
-  city: "San Francisco"
-  timezone: "PST"
-  visa_status: "No sponsorship needed"
+  country: "대한민국"
+  city: "서울"
+  timezone: "KST"
+  visa_status: "국내 취업 제한 없음"
   # Countries/regions where you ALREADY hold work authorization (no sponsorship
   # needed there). Drives the Work-Authorization signal in job evaluation
   # (modes/oferta.md → Block A "Work-authorization check"). Optional — omit or
   # leave [] if not applicable; the free-text visa_status above still applies.
-  authorized_in: ["United States"]
+  authorized_in: ["대한민국"]
   # true if you need visa sponsorship for roles OUTSIDE authorized_in. When a JD
   # explicitly states it will not sponsor, that is a hard blocker (see
   # modes/_profile.md "Your Location Policy"). Omit → treated as false.
@@ -96,8 +96,10 @@ language:
   # `en` or `zh-CN`; `zh-CN` also enables Chinese PDF typography rules.
   # This is separate from language.modes_dir: modes_dir selects market
   # vocabulary/rules, while output selects the prose language.
-  output: en
-  # modes_dir: modes/de  # optional: use DACH market vocabulary while still writing in English
+  output: ko
+  # 한국 채용 시장 모드(자기소개서·경력기술서·공고 평가)를 쓴다.
+  # 영어권 공고를 주로 본다면 output: en 으로 바꾸고 이 줄을 주석 처리한다.
+  modes_dir: modes/ko
 
 # Optional follow-up cadence preferences for `node followup-cadence.mjs`.
 # CLI flags still win for one-off runs (for example `--applied-days 10`).
@@ -129,7 +131,7 @@ spend_tier: standard
 
 cv:
   output_format: "html" # "html" (default), "latex", or "text" (tailored markdown, no PDF)
-  # (Optional) Canva resume design ID for visual CV generation via /career-ops pdf.
+  # (Optional) Canva resume design ID for visual CV generation via /jobkit pdf.
   # Find it in your Canva design URL: https://www.canva.com/design/DAxxxxxxx/...
   # The ID starts with "D" and is 11 characters long.
   # canva_resume_design_id: "DAxxxxxxxxx"
@@ -180,14 +182,14 @@ cv:
 #   # If false (or absent), lack of evidence defaults to a neutral 3/5.
 #   deprioritize_if_absent: true
 
-# Optional user-owned LaTeX CV for `/career-ops latex-tex` (opt-in tailoring in place).
+# Optional user-owned LaTeX CV for `/jobkit latex-tex` (opt-in tailoring in place).
 # cv.md remains the default source of truth for evaluations and auto-pipeline.
 # latex:
 #   source: resume.tex
 
 # ── Cover Letter Settings ──────────────────────────────────────────────────
 #
-# Used by `/career-ops cover` and the cover letter sub-flow in `/career-ops pdf`.
+# Used by `/jobkit cover` and the cover letter sub-flow in `/jobkit pdf`.
 # All fields are optional — omit any you don't need.
 
 cover_letter:
@@ -220,20 +222,20 @@ cover_letter:
 
 # ── Contact Preferences ──────────────────────────────────────────────────────
 #
-# Used by `/career-ops contacto` (outreach CTA) and `/career-ops email` (contact
+# Used by `/jobkit contacto` (outreach CTA) and `/jobkit email` (contact
 # block) to steer drafted messages toward how you actually want to be reached.
 # Optional. Omit the whole block, or set preferred_channel to "either", to keep
 # today's behavior unchanged (no channel steering).
 #
 # contact_preferences:
 #   preferred_channel: "email"   # email | phone | either — default "either" if omitted
-#   # Optional. Surfaced near the contact block in `/career-ops email` drafts and
-#   # can inform the CTA wording in `/career-ops contacto`. Keep it one line.
+#   # Optional. Surfaced near the contact block in `/jobkit email` drafts and
+#   # can inform the CTA wording in `/jobkit contacto`. Keep it one line.
 #   note: "Screens unknown numbers — please email or text first to schedule a call"
 
 # ── Outreach / greeting ─────────────────────────────────────────────────────
 #
-# Used by the greeting variant of `/career-ops contacto` (the short first-touch
+# Used by the greeting variant of `/jobkit contacto` (the short first-touch
 # message for BOSS Zhipin 打招呼, job-board chat, or a cold-email opener).
 #
 # greeting_max_chars is the hard character budget for that message. Default when
@@ -244,7 +246,7 @@ cover_letter:
 
 # ── Application Email Drafts ────────────────────────────────────────────────
 #
-# Used by `/career-ops email` when drafting formal application emails. This is
+# Used by `/jobkit email` when drafting formal application emails. This is
 # separate from `contacto` short outreach and `cover` full cover letters.
 # All fields are optional.
 #
@@ -270,7 +272,7 @@ cover_letter:
 
 # ── Auto-PDF threshold ──────────────────────────────────────────────────────
 #
-# Auto-PDF threshold during evaluation (used by `/career-ops pipeline` and
+# Auto-PDF threshold during evaluation (used by `/jobkit pipeline` and
 # `bash batch/batch-runner.sh`).
 #
 # An offer's tailored CV PDF is auto-generated only when its score is
@@ -279,19 +281,19 @@ cover_letter:
 # become an actual application — so the gate avoids wasted renders.
 #
 # Default (key absent OR commented out): 3.0 — the original gate of
-# `/career-ops pipeline`. Both evaluation paths apply the same default, so
+# `/jobkit pipeline`. Both evaluation paths apply the same default, so
 # a batch run and an interactive run treat the same offer identically.
 #
 # Raise it (e.g. 4.0) to auto-generate PDFs only for stronger matches and
 # leave the rest report-only — those can still be produced on demand via
-# `/career-ops pdf {company-slug}`. Fractional thresholds work (e.g. 3.5 —
+# `/jobkit pdf {company-slug}`. Fractional thresholds work (e.g. 3.5 —
 # half-point scores like 3.5/5 occur in evaluations). Set it to 0 to
 # generate a PDF for every offer.
 # auto_pdf_score_threshold: 4.0
 
 # ── Two-pass triage gate ────────────────────────────────────────────────────
 #
-# Used by `/career-ops pipeline`. Before running the full A-G evaluation on
+# Used by `/jobkit pipeline`. Before running the full A-G evaluation on
 # every URL in a batch, a lightweight first pass (`modes/triage.md`) scores each
 # role from a compact profile brief (`modes/_brief.md`) and filters out the ones
 # that would clearly disqualify — so the expensive full evaluation only runs on

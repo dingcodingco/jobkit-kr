@@ -371,7 +371,7 @@ async function main() {
     }
   }
 
-  console.log('\n→ Run /career-ops pipeline to evaluate new offers.');
+  console.log('\n→ Run /jobkit pipeline to evaluate new offers.');
 }
 
 // Guarded like every sibling scanner (scan-hn.mjs:122, scan-ats-full.mjs:1115).

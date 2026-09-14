@@ -12,7 +12,7 @@ import { join, delimiter } from "node:path";
 import { ensureSkillEntrypoints } from "./skill-entrypoints.mjs";
 
 const REPO = "https://github.com/career-ops-hq/career-ops.git";
-const LATEST_RELEASE = "https://api.github.com/repos/career-ops-hq/career-ops/releases/latest";
+const LATEST_RELEASE = "https://api.github.com/repos/career-ops-hq/jobkit/releases/latest";
 const NPM = process.platform === "win32" ? "npm.cmd" : "npm";
 
 // career-ops is AI-agnostic: every one of these CLIs reads AGENTS.md and works
@@ -32,7 +32,7 @@ const SUPPORTED_CLIS = [
 const USAGE = `career-ops — set up an AI job search workspace.
 
 Usage:
-  npx career-ops init [folder]    Create a new workspace (default: ./career-ops)
+  npx career-ops init [folder]    Create a new workspace (default: ./jobkit)
 
 After setup, open your AI coding tool inside the folder and paste a job offer.
 Docs: https://github.com/career-ops-hq/career-ops`;
@@ -98,7 +98,7 @@ async function main() {
   }
   if (!has("git")) die("git is required but was not found on PATH. Install git and try again.");
 
-  // Pretty path for messages: "./career-ops" for relative, as-is for absolute.
+  // Pretty path for messages: "./jobkit" for relative, as-is for absolute.
   const isAbsolute = target.startsWith("/") || /^[A-Za-z]:/.test(target);
   const display = isAbsolute ? target : `./${target}`;
 

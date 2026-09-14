@@ -20,7 +20,7 @@ Two independent pieces, smallest first. You can use either on its own.
 > machine — none of your data is uploaded. The scan does reach out to *public*
 > job-board APIs to read listings (the same zero-key reads the manual scan makes),
 > but it sends none of your personal data with them, and the triage only reads your
-> local files. Evaluating a shortlisted role later (`/career-ops pipeline`) is the
+> local files. Evaluating a shortlisted role later (`/jobkit pipeline`) is the
 > only step that spends tokens.
 
 ---
@@ -30,7 +30,7 @@ Two independent pieces, smallest first. You can use either on its own.
 `node scan.mjs` is safe to run unattended — it's idempotent (already-seen URLs are
 deduped) and costs nothing. Pick your platform.
 
-Replace `/path/to/career-ops` with your checkout path, and make sure `node` is on
+Replace `/path/to/jobkit` with your checkout path, and make sure `node` is on
 the `PATH` the scheduler uses (schedulers often run with a minimal environment — use
 an absolute path to `node` if in doubt, e.g. `which node`).
 
@@ -42,14 +42,14 @@ day-of-month field resets at each month boundary, so the gap across month-end ca
 be 1–3 days rather than a strict rolling 72 hours:
 
 ```cron
-0 9 */3 * * cd /path/to/career-ops && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
+0 9 */3 * * cd /path/to/jobkit && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
 ```
 
 For a simpler, exactly-even cadence, run it **daily** and let the scanner's dedup
 absorb the days you don't need — `0 9 * * *` — or on weekdays only, at 8am:
 
 ```cron
-0 8 * * 1-5 cd /path/to/career-ops && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
+0 8 * * 1-5 cd /path/to/jobkit && /usr/local/bin/node scan.mjs >> data/scan.log 2>&1
 ```
 
 ### macOS — launchd (survives sleep better than cron)
@@ -68,14 +68,14 @@ Save as `~/Library/LaunchAgents/io.career-ops.scan.plist`, then
     <string>/usr/local/bin/node</string>
     <string>scan.mjs</string>
   </array>
-  <key>WorkingDirectory</key> <string>/path/to/career-ops</string>
+  <key>WorkingDirectory</key> <string>/path/to/jobkit</string>
   <key>StartCalendarInterval</key>
   <dict>
     <key>Hour</key>    <integer>9</integer>
     <key>Minute</key>  <integer>0</integer>
   </dict>
-  <key>StandardOutPath</key>   <string>/path/to/career-ops/data/scan.log</string>
-  <key>StandardErrorPath</key> <string>/path/to/career-ops/data/scan.log</string>
+  <key>StandardOutPath</key>   <string>/path/to/jobkit/data/scan.log</string>
+  <key>StandardErrorPath</key> <string>/path/to/jobkit/data/scan.log</string>
 </dict>
 </plist>
 ```
@@ -149,7 +149,7 @@ Leave data/pipeline.md unchanged — this only reads it and writes data/shortlis
 Open `data/shortlist.md`, then run a real evaluation only on the "Worth a look" rows:
 
 ```text
-/career-ops pipeline
+/jobkit pipeline
 ```
 
 That keeps the expensive step — token-spending evaluation — pointed only at postings

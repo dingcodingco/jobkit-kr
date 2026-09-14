@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Undo2 } from "lucide-react";
 import { useJobs } from "@/components/jobs/job-store";
-import type { InboxJob } from "@/lib/career-ops";
+import type { InboxJob } from "@/lib/jobkit";
 import type { AtsSource } from "@/lib/explore";
 import { ATS_SOURCES } from "@/lib/explore";
 import { daysSince, seniorityFromTitle, sourceFromUrl, SENIORITY_ORDER, type Seniority } from "@/lib/inbox";

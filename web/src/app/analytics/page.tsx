@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { pipelineSummary } from "@/lib/career-ops";
+import { pipelineSummary } from "@/lib/jobkit";
 import { canonStatus, scoreNum } from "@/lib/format";
 import { cumulativeTiles } from "@/lib/funnel-tiles.mjs";
 

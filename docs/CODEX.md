@@ -17,7 +17,7 @@ cd career-ops
 codex
 ```
 
-Codex may not expose a native `/career-ops` slash command. When it does not, ask for the same workflow in plain language:
+Codex may not expose a native `/jobkit` slash command. When it does not, ask for the same workflow in plain language:
 
 ```text
 Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123
@@ -43,6 +43,6 @@ codex exec "Run career-ops tracker mode and summarize the current statuses."
 
 ## Notes
 
-- If your Codex environment exposes slash commands, the shared `/career-ops` router semantics still apply.
+- If your Codex environment exposes slash commands, the shared `/jobkit` router semantics still apply.
 - If it does not, use the same mode names through prompts or `codex exec`.
 - Browser-heavy flows such as `scan`, `pipeline`, and `apply` still depend on Playwright browser tools being available in the active agent setup.
