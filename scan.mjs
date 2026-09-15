@@ -66,6 +66,7 @@ import { classifyFetchError } from './verify-portals.mjs';
 import { fingerprintText, findCrossListings } from './fingerprint-core.mjs';
 import { resolveColumns, parseTrackerRow, normalizeTextKey } from './tracker-parse.mjs';
 import { normalizeCompany } from './tracker-utils.mjs';
+import { lookupCompany } from './company-name-kr.mjs';
 import { normalizeCompanyName } from './invite-match.mjs';
 import { withPipelineLock } from './pipeline-lock.mjs';
 import { compileKeyword, compilePositiveKeyword, compileContentKeyword, buildTitleFilter } from './title-keywords.mjs';
@@ -3099,7 +3100,12 @@ async function main() {
         // silent: skips are counted and reported in the run summary, and
         // --include-blacklisted lets the posting through annotated instead.
         if (blacklist.size > 0) {
-          const blEntry = blacklist.get(normalizeCompany(job.company || company.name || ''));
+          // lookupCompany tries the shared key first, then a Korean-stripped
+          // one, so a row for "아크미" also catches "㈜아크미" and
+          // "아크미 주식회사" — the three spellings modes/ko/gonggo.md tells
+          // the candidate are treated as one company. Additive: the exact key
+          // is still checked first, so no existing match changes.
+          const blEntry = lookupCompany(blacklist, job.company || company.name || '');
           if (blEntry) {
             if (!includeBlacklisted) {
               totalFilteredBlacklist++;

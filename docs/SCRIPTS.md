@@ -409,6 +409,42 @@ Log line format (TSV, one per line, `#`-prefixed lines are comments; for `report
 
 ---
 
+## company-rating
+
+Read-only company reputation lookup for the Korean market. **Never reaches the network and never writes a file.** It does two things: builds the lookup links a candidate can open themselves, and reads back whatever they recorded in `data/회사평점.md` (user layer, opt-in — a missing file means the feature is simply off, exactly like `data/blacklist.md`).
+
+**Why it does not fetch.** Both Korean review sites have declined automation in the one place a site declines it. Jobplanet's `robots.txt` disallows `/search`; company review pages themselves are not disallowed, but a company can only be reached by searching for it first. Blind's `robots.txt` names AI agents and blocks them explicitly — `ClaudeBot`, `anthropic-ai`, `GPTBot`, `CCBot — and the ratings are published as schema.org `EmployerAggregateRating` in the page, so the data being readable is not the question. A person clicking a link is not a crawler, so links are what this produces. (Both checked 2026-09-15.)
+
+**Facts, not verdicts** — the same rule `company-history.mjs` follows. A recorded rating is never folded into the posting score (a gate/signal separation shared with the blacklist), and a low rating is never rendered as "don't apply": a good team exists inside a badly-reviewed company and the reverse is just as common. Output shows the number, its source, its sample size and when it was read, and stops there.
+
+Recorded rows are matched through `company-name-kr.mjs`, so a row written as "㈜아크미" is found by a posting that says "아크미 주식회사". Readings older than 180 days are flagged for re-checking, and a company with rows from more than one source gets an explicit do-not-average note — a 3.1 over 9 reviews and a 3.1 over 367 reviews are not the same number.
+
+```bash
+node company-rating.mjs --company "아크미"        # recorded rows + lookup links
+node company-rating.mjs --summary                 # every company recorded
+node company-rating.mjs --company "아크미" --json
+```
+
+Record file: `data/회사평점.md`. Create it with `cp templates/company-ratings.kr.example.md data/회사평점.md`.
+
+**Exit codes:** `0` always — a missing record file is an opt-out, not an error.
+
+---
+
+## company-name-kr
+
+Korean corporate-form handling for company names, used by the blacklist gate in `scan.mjs` and by `company-rating.mjs`.
+
+The shared `normalizeCompany` (`tracker-utils.mjs`) folds case, whitespace and punctuation, which makes "Acme Corp." match "acme corp". The Korean equivalents are not punctuation and so do not fold: `아크미`, `㈜아크미`, `(주)아크미` and `아크미 주식회사` produce four different keys. That is a real gap — a blacklist row for "아크미" silently failed to catch "㈜아크미", while `modes/ko/gonggo.md` tells the candidate those spellings are treated as one company.
+
+This module **adds a second key** rather than changing the shared one: `normalizeCompany` is the tracker's key function, and changing its output would re-key every row a user has already written. `lookupCompany(map, name)` tries the exact shared key first, so no existing match changes, then the Korean-stripped key.
+
+Only legal-entity forms are stripped (주식회사, 유한회사, 합자회사, 사단법인, 재단법인, ㈜, (주) and so on), and only at the start or end of the name with a separator, so a company genuinely called 아크미주식 or 주단위 keeps its name.
+
+Exports: `stripKoreanEntityForm`, `normalizeKoreanCompany`, `companyKeys`, `lookupCompany`. Library only — no CLI.
+
+---
+
 ## company-history
 
 Read-only per-company evidence-card aggregator. Joins `data/applications.md` (tracker), `data/follow-ups.md`, and `data/scan-history.tsv` per company (and a `funnel-velocity.mjs` status-log source, loaded defensively via dynamic `import()` — probed for optional applied-date/median helpers and degrading to `false` when they are absent). Companies are joined on a normalized key (`normalizeCompany`); rows whose company normalizes to an empty key (e.g. non-Latin names that strip to nothing) are never merged into another company's card — they are excluded and counted in `dataQuality.unjoinable` instead.

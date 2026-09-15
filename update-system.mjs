@@ -320,6 +320,8 @@ const SYSTEM_PATHS = [
   'fingerprint-core.mjs',
   'process-quality.mjs',
   'company-history.mjs',
+  'company-rating.mjs',
+  'company-name-kr.mjs',
   'rejection-latency.mjs',
   'salary-gap.mjs',
   'negotiation-roi.mjs',
