@@ -54,7 +54,11 @@ npm install
 
 cp templates/portals.kr.example.yml portals.yml
 cp config/profile.example.yml config/profile.yml
+cp templates/cv.kr.example.md cv.md
 ```
+
+마지막 줄은 **예시 이력서**다. 가상 인물의 경력이 들어 있어서 이대로 한 번 돌려보고
+결과 모양을 확인한 다음 본인 경력으로 바꿀 수 있다.
 
 ### 내 것으로 바꿀 파일 세 개
 
@@ -66,6 +70,26 @@ cp config/profile.example.yml config/profile.yml
 
 `cv.md`가 "회사 / 기간 / 한 줄" 수준이면 경력기술서 모드가 초안 대신 질문을 낸다.
 지어내지 않으려고 그렇게 만들었다.
+
+### 이력서를 손으로 쓸 필요는 없다
+
+가진 파일이 있으면 AI CLI에 그 파일을 열어둔 채 옮겨 달라고 하면 된다.
+
+```
+내 이력서 파일이야. 이걸 cv.md 형식으로 옮겨줘.
+templates/cv.kr.example.md 구조를 그대로 따라줘.
+없는 내용은 지어내지 말고 비워두고, 뭘 더 물어봐야 하는지 마지막에 목록으로 알려줘.
+```
+
+정리된 게 없으면 물어보게 시킨다.
+
+```
+이력서를 만들려고 해. 나한테 질문해서 cv.md를 채워줘.
+한 번에 한 가지씩 물어보고, 내 대답에 숫자가 없으면 다시 물어봐.
+```
+
+**"없는 내용은 지어내지 말고"를 꼭 넣는다.** 안 넣으면 그럴듯한 숫자가 붙고, 그게
+면접에서 그대로 질문으로 돌아온다.
 
 ### 더 넣어도 되는 파일 하나
 
