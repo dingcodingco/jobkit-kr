@@ -67,6 +67,19 @@ cp config/profile.example.yml config/profile.yml
 `cv.md`가 "회사 / 기간 / 한 줄" 수준이면 경력기술서 모드가 초안 대신 질문을 낸다.
 지어내지 않으려고 그렇게 만들었다.
 
+### 더 넣어도 되는 파일 하나
+
+공고를 보기 전에 본인 기준을 먼저 고정해 두고 싶으면 하나 더 복사한다. 없어도
+도구는 돈다.
+
+```bash
+cp templates/criteria.kr.example.md data/나의_지원기준.md
+```
+
+`gonggo` 모드가 이 파일을 읽으면 공고 요건을 본인의 필수·선호·제외와 한 줄씩
+대조해 준다. **도구는 이 파일을 고치지 않는다** — 공고에 맞춰 기준을 느슨하게
+바꿔주는 것이 제일 해로운 일이라서 어긋난 사실만 적는다.
+
 ```bash
 node verify-portals.mjs   # 보드가 살아 있는지 확인
 node scan.mjs             # 공고 수집 → data/pipeline.md
