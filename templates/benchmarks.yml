@@ -1,47 +1,60 @@
-# Career-Ops — Market Calibration Benchmarks
+# jobkit-kr — 한국 구직 시장 기준값
 #
-# Directional calibration references, not targets. Sources are recruiter-industry
-# and aggregated survey data (not peer-reviewed); mostly US, cross-industry.
-# Every metric here is CANDIDATE-side. Employer-side metrics (time-to-fill,
-# per-process interview pass rates) are deliberately absent — their denominators
-# don't match anything a candidate can compute from their own tracker, and
-# comparing across denominators fabricates precision.
+# 방향을 잡는 참고값이지 목표가 아니다. 본인 수치가 이 범위 밖이라고 해서
+# 잘못하고 있다는 뜻이 아니다.
 #
-# Users can override this file without losing changes on system updates:
-#   1. --benchmarks <path> flag on funnel-velocity.mjs
-#   2. config/benchmarks.yml (user layer — copy this file there and edit)
-#   3. this file (shipped default)
-# Non-US markets: copy to config/benchmarks.yml and localize ranges/sources.
+# 이 포크는 한국 기준을 기본값으로 쓴다. 원본(career-ops)이 싣고 있던 미국
+# 기준값은 templates/benchmarks.us.yml에 그대로 남겨 뒀다.
+#
+# 여기 있는 값은 전부 CANDIDATE 쪽이다. 기업 쪽 지표(채용 소요일, 전형별
+# 통과율)는 후보자가 자기 tracker로 계산할 수 있는 것과 분모가 안 맞아서
+# 일부러 뺐다. 분모가 다른 값을 나란히 놓으면 없는 정밀도가 생긴다.
+#
+# 한국 데이터에 대해 먼저 알아야 할 것 세 가지:
+#
+#   1. 공개된 집계가 거의 신입·대졸 기준이다. 경력직 이직은 추천·헤드헌터·
+#      리텐션 경로가 섞여 있어서 공개 집계가 없다. 경력직이라면 이 값들을
+#      상한이 아니라 방향으로만 본다.
+#   2. 서류 합격률이 미국 대량지원 수치(2~3%)보다 훨씬 높다. 한국은 한 사람이
+#      지원하는 건수 자체가 적고(연 13.4회), 공고마다 자소서를 새로 쓰는
+#      구조라 분모가 작다. 같은 "합격률"이라도 다른 것을 재고 있다.
+#   3. 불합격을 아예 통보하지 않는 관행이 흔하다. 그래서 "응답까지 며칠"은
+#      응답을 받은 건에 한한 값이고, 침묵은 이 지표에 들어오지 않는다.
+#
+# 이 파일을 덮어쓰지 않고 바꾸려면:
+#   1. funnel-velocity.mjs의 --benchmarks <경로>
+#   2. config/benchmarks.yml (사용자 레이어. 업데이트가 안 건드린다)
+#   3. 이 파일 (기본값)
 
 benchmarks:
   response_rate:
-    denominator: per-application          # any employer response / applications sent
-    range_pct: [2, 13]                    # 2-3% cross-platform typical; platform spread up to ~13% (LinkedIn)
-    typical_pct: 3
-    source: "HiringThing 2025-2026 application statistics; scale.jobs 2025"
+    denominator: per-application          # 지원 대비 서류 통과
+    range_pct: [12, 23]                   # 조사마다 12~23%. 아래 caveat을 먼저 읽는다
+    typical_pct: 19
+    source: "한국경제인협회 「2025년 대학생 취업인식도 조사」(2025-12-09, 4년제 재학·졸업자 2,492명) — 평균 13.4회 지원에 서류합격 2.6회, 합격률 19.4%(전년 22.2%)"
     year: 2025
-    caveat: "Mass-application platform data; hand-targeted applications should beat this."
+    caveat: "신입·대졸 기준이다. 경력직 공개 집계는 없다. 범위 하한 12%는 사람인 2021 상반기 조사(구직자 1,183명, 평균 14회 지원·1.7회 합격), 상한 23%는 잡코리아 2021 하반기 조사(신입 649명, 6.1회 지원·1.4회 합격)에서 계산한 값이다. 셋 다 '서류 통과'를 재므로 미국 파일의 2~3%와 직접 비교하면 안 된다 — 그쪽은 대량지원 플랫폼 기준이다."
 
   application_to_interview:
     denominator: per-application
-    range_pct: [2, 4]                     # ~3% (2024), down from 8.4% (2023); ≈30-40 applications per interview
-    typical_pct: 3
-    source: "HiringThing / resutrack 2026 aggregate"
-    year: 2026
-    caveat: "Mass-application platform data; hand-targeted applications should beat this."
+    range_pct: [12, 23]
+    typical_pct: 19
+    source: "위와 같음 — 한국은 서류 통과가 곧 면접이라 response_rate와 같은 값을 쓴다"
+    year: 2025
+    caveat: "한국 채용에서 서류 전형을 통과하면 면접으로 바로 이어지는 것이 보통이라 두 지표가 사실상 같은 것을 잰다. 두 값이 갈리는 시장(별도 전화 스크리닝 단계가 있는 곳)과 다르다."
 
   days_first_response:
-    denominator: per-application-with-response   # censored: ghosted applications never enter this metric
-    range_days: [5, 14]                   # typical ~5 days; 40% of recruiters take >2 weeks
-    typical_days: 7
-    source: "estimate (no citable published aggregate for this window; conservative midpoint of recruiter-survey reporting)"
-    year: 2025
-    caveat: "Among applications that got a response at all (61% of candidates report post-interview ghosting)."
+    denominator: per-application-with-response   # 침묵한 지원은 이 지표에 안 들어온다
+    range_days: [7, 14]
+    typical_days: 10
+    source: "추정 — 인용할 만한 공개 집계가 없다. 채용 담당자용 안내 문서들이 공통으로 권하는 1~2주 구간을 보수적으로 잡았다"
+    year: 2026
+    caveat: "응답을 받은 건에 한한 값이다. 한국은 불합격을 통보하지 않는 경우가 흔해서(잡플래닛 2023 설문에서 면접 결과를 '아예 못 받았다'가 16%), 침묵을 이 숫자로 판단하면 안 된다. company-history.mjs의 침묵 판정 기본값이 이 값의 상한 × 2 = 28일로 계산된다."
 
   days_interview_to_offer:
     denominator: per-successful-process
-    range_days: [20, 28]
-    typical_days: 24
-    source: "NACE Recruiting Benchmarks (2019 — stale, directional only)"
-    year: 2019
-    caveat: "Old data; treat as order-of-magnitude."
+    range_days: [14, 30]
+    typical_days: 14
+    source: "잡플래닛 2023 설문 — '가장 오래 걸린 면접 결과 통보 기간'에 2주 42%, 한 달 32%, 통보 못 받음 16%"
+    year: 2023
+    caveat: "원 설문이 '가장 오래 걸린' 경우를 물었으므로 이 범위는 통상값이 아니라 상한 쪽으로 치우쳐 있다. 실제 통상은 이보다 짧다. 자릿수만 보는 값으로 쓴다."

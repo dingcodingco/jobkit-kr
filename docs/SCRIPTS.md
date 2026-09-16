@@ -376,6 +376,11 @@ node funnel-velocity.mjs --self-test
 node funnel-velocity.mjs --benchmarks path/to/benchmarks.yml
 ```
 
+**This fork ships Korean benchmarks.** `templates/benchmarks.yml` holds figures from Korean surveys (document-screening pass rate 19.4%, 한국경제인협회 2025, n=2,492) rather than the US mass-application rates upstream shipped; the original US file is kept verbatim at `templates/benchmarks.us.yml`. The two are not comparable — a Korean applicant sends ~13 applications a year and writes a fresh cover essay for each, so the denominator is a different thing from a US mass-application platform's. Two limits are recorded in the file itself: the published Korean aggregates are almost all new-graduate figures (no public aggregate exists for experienced hires, whose hiring runs through referrals and recruiters), and silently dropping a rejected candidate is common enough that the first-response window covers only applications that got an answer at all.
+
+```bash
+```
+
 Ledger line format (TSV, appended by `set-status.mjs`, `#`-prefixed lines are comments):
 
 ```text
@@ -465,7 +470,7 @@ node company-history.mjs --include-stale          # include facts older than 365
 node company-history.mjs --self-test
 ```
 
-Default silence window: `templates/benchmarks.yml` `days_first_response.range_days[1] * 2` when that file exists, else `28` days.
+Default silence window: `templates/benchmarks.yml` `days_first_response.range_days[1] * 2` when that file exists, else `28` days. With this fork's Korean values that is 14 × 2 = 28 days, the same number the fallback uses.
 
 **Exit codes:** `0` success, including empty/no-data runs (a missing tracker, follow-ups, or scan-history source degrades gracefully rather than failing), `1` unrecognized CLI flag or an unexpected runtime error.
 

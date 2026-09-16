@@ -602,16 +602,48 @@ function selfTest() {
   check(v3.appliedToResponded.censored === 2, 'velocity: censored drops to 2 after row 4 completes');
 
   // -- benchmarks + classification --
+  //
+  // The classification checks below run against a FIXED synthetic benchmark,
+  // not against whatever the shipped file happens to say. They are testing
+  // classify()'s banding logic, and a logic test must not break when the market
+  // data changes: this fork replaced the shipped US figures with Korean ones
+  // (templates/benchmarks.us.yml keeps the originals), and hard-coding the live
+  // numbers here turned six logic assertions into data assertions that all
+  // failed on that swap. What the shipped file must still satisfy is asserted
+  // separately, as structure and invariants.
+  const FIXTURE_RATE = { range_pct: [2, 13], typical_pct: 3 };
+  check(classify(1.5, FIXTURE_RATE).band === 'below-range', 'classify: below');
+  check(classify(6, FIXTURE_RATE).band === 'within-range', 'classify: within');
+  check(classify(14, FIXTURE_RATE).band === 'above-range', 'classify: above');
+  check(classify(2, FIXTURE_RATE).band === 'within-range', 'classify: lower bound inclusive');
+  check(classify(13, FIXTURE_RATE).band === 'within-range', 'classify: upper bound inclusive');
+  check(classify(6, FIXTURE_RATE).vsTypical === 2, 'classify: vsTypical multiplier');
+
   const bm = loadBenchmarks(join(CODE_ROOT, 'templates/benchmarks.yml')).benchmarks;
   check(bm.response_rate && Array.isArray(bm.response_rate.range_pct), 'benchmarks: shipped file loads');
-  check(bm.days_first_response.range_days[1] === 14, 'benchmarks: first-response window upper bound');
   check(!('time_to_fill' in bm), 'benchmarks: employer-side time_to_fill must not exist');
-  check(classify(1.5, bm.response_rate).band === 'below-range', 'classify: below');
-  check(classify(6, bm.response_rate).band === 'within-range', 'classify: within');
-  check(classify(14, bm.response_rate).band === 'above-range', 'classify: above');
-  check(classify(2, bm.response_rate).band === 'within-range', 'classify: lower bound inclusive');
-  check(classify(13, bm.response_rate).band === 'within-range', 'classify: upper bound inclusive');
-  check(classify(6, bm.response_rate).vsTypical === 2, 'classify: vsTypical multiplier');
+  for (const [key, metric] of Object.entries(bm)) {
+    const range = metric.range_pct || metric.range_days;
+    check(
+      Array.isArray(range) && range.length === 2 && range[0] <= range[1],
+      `benchmarks: ${key} range is an ordered pair`,
+    );
+    const typical = metric.typical_pct ?? metric.typical_days;
+    check(
+      Number.isFinite(typical) && typical >= range[0] && typical <= range[1],
+      `benchmarks: ${key} typical sits inside its own range`,
+    );
+    check(
+      typeof metric.source === 'string' && metric.source.trim().length > 0,
+      `benchmarks: ${key} cites a source`,
+    );
+  }
+  // company-history.mjs derives its silence window from this bound, so a data
+  // swap that dropped it would silently change when a company reads as silent.
+  check(
+    Array.isArray(bm.days_first_response?.range_days),
+    'benchmarks: first-response window is present for the silence-window derivation',
+  );
 
   // -- calibration gating --
   const mkTracker = (applied, responded) => {
@@ -628,9 +660,26 @@ function selfTest() {
   check(!/[\d.]+× typical/.test(smallSummary), 'tone: no multiplier claim under n=20');
   check(smallSummary.includes('directional only'), 'tone: small-sample label present');
 
-  const big = analyze({ trackerContent: mkTracker(38, 2), logContent: '', benchmarks: bm, states, todayStr: TODAY });
-  check(big.calibration.smallSample === false, 'calibration: n=40 → claims allowed');
-  check(big.calibration.responseRate.ownPct === 5, `calibration: 2/40 = 5%, got ${big.calibration.responseRate.ownPct}`);
+  // Sized off the shipped typical rate rather than a fixed 2-in-40, so the row
+  // actually lands inside whichever band the shipped file describes. The point
+  // is the phrasing a within-band result gets, not one particular percentage.
+  const TOTAL = 42;
+  const inBandResponded = Math.round((TOTAL * bm.response_rate.typical_pct) / 100);
+  const big = analyze({
+    trackerContent: mkTracker(TOTAL - inBandResponded, inBandResponded),
+    logContent: '',
+    benchmarks: bm,
+    states,
+    todayStr: TODAY,
+  });
+  check(big.calibration.smallSample === false, `calibration: n=${TOTAL} → claims allowed`);
+  // Same rounding stats.mjs uses (one decimal), so this stays an arithmetic
+  // check rather than becoming a rounding accident.
+  const expectedOwnPct = Math.round((inBandResponded / TOTAL) * 1000) / 10;
+  check(
+    big.calibration.responseRate.ownPct === expectedOwnPct,
+    `calibration: ${inBandResponded}/${TOTAL} = ${expectedOwnPct}%, got ${big.calibration.responseRate.ownPct}`,
+  );
   const bigSummary = renderSummary(big, TODAY);
   check(bigSummary.includes('within the typical band'), 'tone: within-band phrasing');
 
@@ -775,10 +824,19 @@ function selfTest() {
     '3\t2026-05-31\tInterview\tOffer\tset-status\t',
   ].join('\n');
   const ioResult = analyze({ trackerContent: waitTracker, logContent: ioLog, benchmarks: bm, states, todayStr: TODAY });
-  check(ioResult.velocity.interviewToOffer.benchmark?.rangeDays?.[0] === 20, 'io-benchmark: days_interview_to_offer attached to the hop');
+  check(
+    ioResult.velocity.interviewToOffer.benchmark?.rangeDays?.[0] ===
+      bm.days_interview_to_offer.range_days[0],
+    'io-benchmark: days_interview_to_offer attached to the hop',
+  );
   check(ioResult.velocity.interviewToOffer.n === 3 && ioResult.velocity.interviewToOffer.median === 25, `io-benchmark: [21,25,30] → median 25, got ${ioResult.velocity.interviewToOffer.median}`);
   const ioSummary = renderSummary(ioResult, TODAY);
-  check(ioSummary.includes('vs 20–28d typical (2019, directional)'), 'io-benchmark: summary carries the benchmark with year + directional');
+  const ioBm = bm.days_interview_to_offer;
+  const expectedIoLine = `vs ${ioBm.range_days[0]}–${ioBm.range_days[1]}d typical (${ioBm.year}, directional)`;
+  check(
+    ioSummary.includes(expectedIoLine),
+    `io-benchmark: summary carries the benchmark with year + directional (expected "${expectedIoLine}")`,
+  );
   check(!renderSummary(analyze({ trackerContent: waitTracker, logContent: '', benchmarks: bm, states, todayStr: TODAY }), TODAY).includes('20–28d typical'), 'io-benchmark: no benchmark context without a median (claims stay gated)');
   // n=1 I→O hop → insufficientData, median null → benchmark must not leak into JSON output
   const ioInsufficient = analyze({ trackerContent: waitTracker, logContent: LOG_FIXTURE, benchmarks: bm, states, todayStr: TODAY });
