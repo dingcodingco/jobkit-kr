@@ -99,35 +99,63 @@ job_boards:
     # max_pages: 200        # 안전 상한. 실제 종료는 빈 페이지가 결정한다
     notes: "개발 직군 전용. 비개발 직무를 찾는다면 enabled: false로 두는 게 낫다."
 
-  # ── 그리팅 (회사 채용 페이지) ──────────────────────────────────────
-  # 국내에서 가장 널리 쓰이는 채용 관리 시스템이다. 회사마다 주소가
-  # {회사}.career.greetinghr.com 로 따로 있고, 그 한국어 첫 화면에 그 회사
-  # 공고가 전부 실려 온다. 상위 도구가 Greenhouse·Lever를 회사 단위로 읽는
-  # 방식과 같아서, 여기도 회사 이름을 직접 적어 준다.
+
+  # ── 사람인 (오픈API) ──────────────────────────────────────────────
+  # 국내 최대 채용 보드다. 공식 오픈API가 있고 **인증키가 필요하다.**
+  # 이 파일의 다른 보드는 키 없이 열리는 것들이라 이것만 기본이 꺼져 있다.
   #
-  # 이 보드가 원티드·점핏이 못 주는 세 가지를 준다.
-  #   - 게시일. 원티드·점핏은 아예 안 줘서 이 포크가 비워 두는 값인데,
-  #     여기는 확인한 348건 전부 들어 있었다(2026-09-15)
-  #   - 고용형태가 별도 값으로 온다. 원티드는 "마케터 채용_계약직"처럼
-  #     제목에 섞여 있어서 낱말로 걸러야 한다
-  #   - 경력 연차가 careerFrom/careerTo로 명확하다
+  # 키는 여기 적지 말고 환경변수에 둔다. portals.yml은 이슈에 붙여넣거나
+  # 실수로 커밋하기 쉬운 파일이다.
+  #
+  #   https://oapi.saramin.co.kr/guide/1 에서 발급
+  #   export SARAMIN_ACCESS_KEY=...
+  #
+  # 다른 한국 보드가 못 주는 것 세 가지를 준다.
+  #   - 검색. 원티드·점핏은 전체를 받아 우리가 거르는데, 여기는 회사명·공고
+  #     제목·직무 내용을 서버에서 찾아 준다
+  #   - 게시일과 마감일을 둘 다 준다. 원티드·점핏은 둘 다 없다
+  #   - 헤드헌팅·파견업체 공고를 아예 빼고 받을 수 있다(sr=directhire).
+  #     국내 키워드 검색에서 이게 꽤 큰 몫을 차지하고 계속 재등록된다
+  #
+  # job_type·loc_cd 같은 숫자 코드는 사람인 코드표를 보고 넣는다.
+  #   https://oapi.saramin.co.kr/guide/code-table1
+  - name: 사람인
+    provider: saramin
+    enabled: false          # SARAMIN_ACCESS_KEY를 넣고 true로 바꾼다
+    saramin_keywords: "CRM 마케터"
+    saramin_exclude_directhire: true   # 헤드헌팅·파견업체 제외
+    # saramin_loc_mcd: "101,102"       # 지역 코드(콤마 구분)
+    # saramin_job_type: "1"            # 고용형태 코드
+    # saramin_sort: pd                 # 게시일 역순(기본값)
+    # saramin_count: 110               # 한 번에 받을 건수. 상한 110
+    # max_pages: 20                    # 안전 상한. 실제 종료는 짧은 페이지가 결정한다
+    notes: "키가 있어야 돈다. 없으면 켜도 오류만 난다."
+
+  # ── 그리팅 (회사 채용 페이지) ──────────────────────────────────────
+  # **가고 싶은 회사를 콕 집어 볼 때만 쓴다. 검색 기능이 없다.**
+  #
+  # 국내에서 가장 널리 쓰이는 채용 관리 시스템인데, 전체를 훑는 길이 없다.
+  # 회사마다 주소가 {회사}.career.greetinghr.com로 따로 있어서 회사 이름을
+  # 하나씩 적어 줘야 한다. 그래서 기본이 꺼져 있다 — 켜 두면 남이 고른
+  # 회사 공고만 나온다.
+  #
+  # 그래도 남겨 둔 이유는 사람인에 안 올리고 자사 채용 페이지만 쓰는 회사가
+  # 있기 때문이다. 그런 회사를 노린다면 여기에 적는다.
   #
   # 회사 이름은 그 회사 채용 페이지 주소에서 가져온다. 예를 들어
-  # https://musinsa.career.greetinghr.com 이면 musinsa다.
+  # https://musinsa.career.greetinghr.com 이면 musinsa다. 자체 도메인으로
+  # 옮긴 회사는 그 주소를 그대로 적는다(무신사 → www.musinsacareers.com).
   - name: 그리팅
     provider: greeting
-    greeting_companies:
-      - finda          # 핀다
-      - musinsa        # 무신사
-      - oliveyoung     # CJ올리브영
-      - kurly          # 컬리
-      - wadiz          # 와디즈
-      - zigbang        # 직방
-    enabled: true
+    enabled: false          # 가고 싶은 회사를 적고 true로 바꾼다
+    greeting_companies: []
+    # greeting_companies:
+    #   - finda
+    #   - www.musinsacareers.com
     # greeting_employment:   # 고용형태로 거르고 싶을 때. 제목이 아니라 실제 값을 본다
     #   - FULL_TIME_WORKER   # 정규직
     # max_pages: 60          # 한 번에 훑을 회사 수 상한(회사당 요청 1건)
-    notes: "가고 싶은 회사를 직접 적는 보드다. 목록에 없는 회사는 그 회사 채용 페이지 주소를 열어 앞부분을 넣으면 된다."
+    notes: "검색이 없다. 회사를 직접 적는 용도다."
 
 # ── 검색 쿼리 ──────────────────────────────────────────────────────
 # WebSearch로 도는 경로다. 사람인·잡코리아는 공개 JSON API가 없어서
